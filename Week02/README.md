@@ -15,3 +15,7 @@
 [two-sum.cpp](https://github.com/dekeshile/algorithm010/tree/master/Week02/two-sum.cpp)
 
 [valid-anagram.c](https://github.com/dekeshile/algorithm010/tree/master/Week02/valid-anagram.c)
+
+[sliding-window-maximum.cpp](https://github.com/dekeshile/algorithm010/tree/master/Week02/sliding-window-maximum.cpp)
+
+[chou-shu-lcof.c](https://github.com/dekeshile/algorithm010/tree/master/Week02/chou-shu-lcof.c)
