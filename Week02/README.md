@@ -1,21 +1,6 @@
-# 本周完成
+# 目录说明
 
-[binary-tree-inorder-traversal.cpp](https://github.com/dekeshile/algorithm010/tree/master/Week02/binary-tree-inorder-traversal.cpp)
+- [第二周学习笔记.md](https://github.com/dekeshile/algorithm010/tree/master/第二周学习笔记.md)     -    内容包括学习整理的笔记和相应的leetcode题解
+- [第二周完成.md](https://github.com/dekeshile/algorithm010/tree/master/第二周完成.md)     -   详列了本周完成的题目
+- [题解集](https://github.com/dekeshile/algorithm010/tree/master/题解集) - 包含完成的leetcode题目的源代码
 
-[binary-tree-preorder-traversal.cpp](https://github.com/dekeshile/algorithm010/tree/master/Week02/binary-tree-preorder-traversal.cpp)
-
-[group-anagrams.cpp](https://github.com/dekeshile/algorithm010/tree/master/Week02/group-anagrams.cpp)
-
-[n-ary-tree-level-order-traversal.cpp](https://github.com/dekeshile/algorithm010/tree/master/Week02/n-ary-tree-level-order-traversal.cpp)
-
-[n-ary-tree-postorder-traversal.cpp](https://github.com/dekeshile/algorithm010/tree/master/Week02/n-ary-tree-postorder-traversal.cpp)
-
-[n-ary-tree-preorder-traversal.cpp](https://github.com/dekeshile/algorithm010/tree/master/Week02/n-ary-tree-preorder-traversal.cpp)
-
-[two-sum.cpp](https://github.com/dekeshile/algorithm010/tree/master/Week02/two-sum.cpp)
-
-[valid-anagram.c](https://github.com/dekeshile/algorithm010/tree/master/Week02/valid-anagram.c)
-
-[sliding-window-maximum.cpp](https://github.com/dekeshile/algorithm010/tree/master/Week02/sliding-window-maximum.cpp)
-
-[chou-shu-lcof.c](https://github.com/dekeshile/algorithm010/tree/master/Week02/chou-shu-lcof.c)
