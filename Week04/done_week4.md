@@ -21,8 +21,6 @@
 
 
 
-
-
 # 第10课 |  贪心算法
 
 ## 参考链接
@@ -38,8 +36,6 @@
 - ✅[模拟行走机器人](https://leetcode-cn.com/problems/walking-robot-simulation/description/)
 - ✅[跳跃游戏](https://leetcode-cn.com/problems/jump-game/) （亚马逊、华为、Facebook 在半年内面试中考过）
 - 🔲[跳跃游戏 II ](https://leetcode-cn.com/problems/jump-game-ii/)（亚马逊、华为、字节跳动在半年内面试中考过）
-
-
 
 
 
@@ -60,11 +56,8 @@
 - 🔲[搜索旋转排序数组](https://leetcode-cn.com/problems/search-in-rotated-sorted-array/)（Facebook、字节跳动、亚马逊在半年内面试常考）
 - 🔲[搜索二维矩阵](https://leetcode-cn.com/problems/search-a-2d-matrix/)（亚马逊、微软、Facebook 在半年内面试中考过）
 - 🔲[寻找旋转排序数组中的最小值](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/)（亚马逊、微软、字节跳动在半年内面试中考过）
-
 - 使用二分查找，寻找一个半有序数组 [4, 5, 6, 7, 0, 1, 2] 中间无序的地方
   说明：同学们可以将自己的思路、代码写在学习总结中
-
-
 
 
 
