@@ -10,6 +10,280 @@
 
 ## 实战题目
 
+#### [433. 最小基因变化](https://leetcode-cn.com/problems/minimum-genetic-mutation/)
+
+> 一条基因序列由一个带有8个字符的字符串表示，其中每个字符都属于 `"A"`, `"C"`, `"G"`, `"T"`中的任意一个。
+>
+> 假设我们要调查一个基因序列的变化。**一次**基因变化意味着这个基因序列中的**一个**字符发生了变化。
+>
+> 例如，基因序列由`"AACCGGTT"` 变化至 `"AACCGGTA" `即发生了一次基因变化。
+>
+> 与此同时，每一次基因变化的结果，都需要是一个合法的基因串，即该结果属于一个基因库。
+>
+> 现在给定3个参数 — start, end, bank，分别代表起始基因序列，目标基因序列及基因库，请找出能够使起始基因序列变化为目标基因序列所需的最少变化次数。如果无法实现目标变化，请返回 -1。
+>
+> **注意:**
+>
+> 1. 起始基因序列默认是合法的，但是它并不一定会出现在基因库中。
+> 2. 所有的目标基因序列必须是合法的。
+> 3. 假定起始基因序列与目标基因序列是不一样的。
+>
+> **示例 1:**
+>
+> ```
+> start: "AACCGGTT"
+> end:   "AACCGGTA"
+> bank: ["AACCGGTA"]
+> 返回值: 1
+> ```
+>
+> **示例 2:**
+>
+> ```
+> start: "AACCGGTT"
+> end:   "AAACGGTA"
+> bank: ["AACCGGTA", "AACCGCTA", "AAACGGTA"]
+> 返回值: 2
+> ```
+>
+> **示例 3:**
+>
+> ```
+> start: "AAAAACCC"
+> end:   "AACCCCCC"
+> bank: ["AAAACCCC", "AAACCCCC", "AACCCCCC"]
+> 返回值: 3
+> ```
+
+**解题思路**
+
+
+
+**代码实现**
+
+```c++
+/*
+注意：每一次基因变化的结果，都需要是一个合法的基因串，即该结果属于一个基因库。
+*/
+#include<queue>
+#include<map>
+using namespace std;
+class Solution {
+public:
+    int minMutation(string start, string end, vector<string>& bank) {
+      map<string, string> mymap;
+      for(int i=0;i<bank.size();i++)
+            mymap.insert(pair<string,string>(bank[i],bank[i]));
+       //目标基因序列都不合法
+      if(mymap.find(end) == mymap.end())
+            return -1;
+      char basic[] = {'A','C','G','T'};
+      int nums = 0;
+      queue<string> options;
+      options.push(start);
+      while(!options.empty()){
+        //遍历所有备选基因串
+        nums++;
+        for(int k=options.size();k >0 ;k--) {
+            string top = options.front();
+            options.pop();
+            //改变备选基因串的每一个字符，看是否与目标基因串相等或是否合法
+            for(int i=0;i<top.length();i++) {
+                char temp = top[i];
+                for( int j = 0;j < 4 ;j++ ) {
+                    top[i] = basic[j];
+                    if(top == end)
+                        return nums;
+                    //是一个合法的基因串
+                    if(   mymap.find(top) !=  mymap.end() ){
+                        options.push(top);
+                        mymap.erase(top);
+                    }
+                }
+                top[i] = temp;
+            }
+        }
+      }
+     return -1;
+    }
+};
+```
+
+
+
+#### [127. 单词接龙](https://leetcode-cn.com/problems/word-ladder/)
+
+> 给定两个单词（*beginWord* 和 *endWord*）和一个字典，找到从 *beginWord* 到 *endWord* 的最短转换序列的长度。转换需遵循如下规则：
+>
+> 1. 每次转换只能改变一个字母。
+> 2. 转换过程中的中间单词必须是字典中的单词。
+>
+> **说明:**
+>
+> - 如果不存在这样的转换序列，返回 0。
+> - 所有单词具有相同的长度。
+> - 所有单词只由小写字母组成。
+> - 字典中不存在重复的单词。
+> - 你可以假设 *beginWord* 和 *endWord* 是非空的，且二者不相同。
+>
+> **示例 1:**
+>
+> ```
+> 输入:
+> beginWord = "hit",
+> endWord = "cog",
+> wordList = ["hot","dot","dog","lot","log","cog"]
+> 
+> 输出: 5
+> 
+> 解释: 一个最短转换序列是 "hit" -> "hot" -> "dot" -> "dog" -> "cog",
+>      返回它的长度 5。
+> ```
+>
+> **示例 2:**
+>
+> ```
+> 输入:
+> beginWord = "hit"
+> endWord = "cog"
+> wordList = ["hot","dot","dog","lot","log"]
+> 
+> 输出: 0
+> 
+> 解释: endWord "cog" 不在字典中，所以无法进行转换。
+> ```
+
+**解题思路1**(暴力，不推荐)
+
+先做的  [433. 最小基因变化](https://leetcode-cn.com/problems/minimum-genetic-mutation/)  这题，所以乍一看，和这题感觉几乎一样，只不过是这题每次换要换26个字母，而不是那题原来的4个字母，只要测试用例不是很为难人。。。应该可以过吧，于是说干就干。。。
+
+**代码实现1**
+
+```c++
+/*
+注意：每一次基因变化的结果，都需要是一个合法的基因串，即该结果属于一个基因库。
+*/
+#include<queue>
+#include<map>
+using namespace std;
+class Solution {
+public:
+    int minMutation(string start, string end, vector<string>& bank) {
+      map<string, string> mymap;
+      for(int i=0;i<bank.size();i++)
+            mymap.insert(pair<string,string>(bank[i],bank[i]));
+       //目标基因序列都不合法
+      if(mymap.find(end) == mymap.end())
+            return -1;
+      char basic[] = {'A','C','G','T'};
+      int nums = 0;
+      queue<string> options;
+      options.push(start);
+      while(!options.empty()){
+        //遍历所有备选基因串
+        nums++;
+        for(int k=options.size();k >0 ;k--) {
+            string top = options.front();
+            options.pop();
+            //改变备选基因串的每一个字符，看是否与目标基因串相等或是否合法
+            for(int i=0;i<top.length();i++) {
+                char temp = top[i];
+                for( int j = 0;j < 4 ;j++ ) {
+                    top[i] = basic[j];
+                    if(top == end)
+                        return nums;
+                    //是一个合法的基因串
+                    if(   mymap.find(top) !=  mymap.end() ){
+                        options.push(top);
+                        mymap.erase(top);
+                    }
+                }
+                top[i] = temp;
+            }
+        }
+      }
+     return -1;
+    }
+};
+```
+
+**解题思路2 (图)**
+
+参考了 【[官方题解](https://leetcode-cn.com/problems/word-ladder/solution/dan-ci-jie-long-by-leetcode/)】，有了这个图就好说了
+
+![Word_Ladder_1.png](pictures/Word_Ladder_1.png)
+
+核心思想，把只相差一个字母的单词(包括start和字典中的所有单词)用线连在一起，就构成了一张图
+
+那么要求从start到end的最小变换，就是求start到end的最短路径
+
+当然这是一个无权图，还用不着迪杰斯特拉之类的最短路径算法。直接用层次遍历的方法，记录从start到end的层次即是最短路径。
+
+**实现细节**
+
+1.怎么知道两个单词只相差一个字母，怎么找到自己的下一个单词
+
+2.如何记录层次也即最短序列长度
+
+3.既然是图，怎样防止重复遍历到结点
+
+**代码实现2**
+
+```
+class Solution {
+public:
+    int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
+        wordList.push_back(beginWord);
+        map<string,vector<string>> wordMap;
+        //标记该单词是否被访问过，防止出现环
+        map<string,int> visited;
+        //对所有单词预处理，以单词的通配符为hash的key，对应的value为具有这个通配符的形式的单词集合
+        for(int i=0;i<wordList.size();i++){
+            //初始化visited
+            visited.insert(pair<string,int>(wordList[i],0));
+             string tempWord = wordList[i];
+            for(int j=0;j<tempWord.length();j++){
+                char temp = tempWord[j];
+                tempWord[j] = '*';
+                wordMap[tempWord].push_back(wordList[i]);
+                tempWord[j] = temp;
+             }
+        }
+        queue<string> que;
+        que.push(beginWord);
+        int nums = 1;
+        while(!que.empty()){
+            nums++;
+            //遍历每个备选单词
+            for(int i = que.size();i >0;i--){
+                 string top = que.front();
+                 string oldTop = top;
+                 que.pop();
+                 //遍历每个单词的所有通配形式
+                 for(int k=0;k<top.length();k++) {
+                    char temp = top[k];
+                    top[k] = '*';
+                     //遍历每个单词与它只相差一个字母的所有单词
+                    for(int j=0;j<wordMap[top].size();j++){
+                        string word = wordMap[top][j];
+                        if( word == endWord )
+                            return nums;
+                        if(word != oldTop && visited[word] == 0){
+                            que.push(wordMap[top][j]);
+                            visited[word] =1;
+                        }
+                    }
+                    top[k] = temp;
+            } 
+         }
+        }
+        return 0;
+    }
+};
+```
+
+还可以优化的地方，map用hash
+
 
 
 # 第10课 |  贪心算法
@@ -87,7 +361,7 @@
 
 **代码实现**
 
-```
+```c++
 #include<map>
 #include<utility>
 class Solution {
@@ -149,7 +423,7 @@ public:
 
 **代码实现**
 
-```
+```c++
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -187,107 +461,6 @@ public:
 ```
 
 
-
-#### [433. 最小基因变化](https://leetcode-cn.com/problems/minimum-genetic-mutation/)
-
-> 一条基因序列由一个带有8个字符的字符串表示，其中每个字符都属于 `"A"`, `"C"`, `"G"`, `"T"`中的任意一个。
->
-> 假设我们要调查一个基因序列的变化。**一次**基因变化意味着这个基因序列中的**一个**字符发生了变化。
->
-> 例如，基因序列由`"AACCGGTT"` 变化至 `"AACCGGTA" `即发生了一次基因变化。
->
-> 与此同时，每一次基因变化的结果，都需要是一个合法的基因串，即该结果属于一个基因库。
->
-> 现在给定3个参数 — start, end, bank，分别代表起始基因序列，目标基因序列及基因库，请找出能够使起始基因序列变化为目标基因序列所需的最少变化次数。如果无法实现目标变化，请返回 -1。
->
-> **注意:**
->
-> 1. 起始基因序列默认是合法的，但是它并不一定会出现在基因库中。
-> 2. 所有的目标基因序列必须是合法的。
-> 3. 假定起始基因序列与目标基因序列是不一样的。
->
-> **示例 1:**
->
-> ```
-> start: "AACCGGTT"
-> end:   "AACCGGTA"
-> bank: ["AACCGGTA"]
-> 返回值: 1
-> ```
->
-> **示例 2:**
->
-> ```
-> start: "AACCGGTT"
-> end:   "AAACGGTA"
-> bank: ["AACCGGTA", "AACCGCTA", "AAACGGTA"]
-> 返回值: 2
-> ```
->
-> **示例 3:**
->
-> ```
-> start: "AAAAACCC"
-> end:   "AACCCCCC"
-> bank: ["AAAACCCC", "AAACCCCC", "AACCCCCC"]
-> 返回值: 3
-> ```
-
-**解题思路**
-
-
-
-
-
-**代码实现**
-
-```
-/*
-注意：每一次基因变化的结果，都需要是一个合法的基因串，即该结果属于一个基因库。
-*/
-#include<queue>
-#include<map>
-using namespace std;
-class Solution {
-public:
-    int minMutation(string start, string end, vector<string>& bank) {
-      map<string, string> mymap;
-      for(int i=0;i<bank.size();i++)
-            mymap.insert(pair<string,string>(bank[i],bank[i]));
-       //目标基因序列都不合法
-      if(mymap.find(end) == mymap.end())
-            return -1;
-      char basic[] = {'A','C','G','T'};
-      int nums = 0;
-      queue<string> options;
-      options.push(start);
-      while(!options.empty()){
-        //遍历所有备选基因串
-        nums++;
-        for(int k=options.size();k >0 ;k--) {
-            string top = options.front();
-            options.pop();
-            //改变备选基因串的每一个字符，看是否与目标基因串相等或是否合法
-            for(int i=0;i<top.length();i++) {
-                char temp = top[i];
-                for( int j = 0;j < 4 ;j++ ) {
-                    top[i] = basic[j];
-                    if(top == end)
-                        return nums;
-                    //是一个合法的基因串
-                    if(   mymap.find(top) !=  mymap.end() ){
-                        options.push(top);
-                        mymap.erase(top);
-                    }
-                }
-                top[i] = temp;
-            }
-        }
-      }
-     return -1;
-    }
-};
-```
 
 
 
