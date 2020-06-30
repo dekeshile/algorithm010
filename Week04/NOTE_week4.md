@@ -211,7 +211,7 @@ public:
 
 参考了 【[官方题解](https://leetcode-cn.com/problems/word-ladder/solution/dan-ci-jie-long-by-leetcode/)】，有了这个图就好说了
 
-<img src="https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/Word_Ladder_1.png" alt="Word_Ladder_1" style="zoom: 50%;" />
+![Word_Ladder_1](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/Word_Ladder_1.png)
 
 核心思想，把只相差一个字母的单词(包括start和字典中的所有单词)用线连在一起，就构成了一张图
 
