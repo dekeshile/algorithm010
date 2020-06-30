@@ -6,7 +6,7 @@
 
 ## 知识点
 
----------待补充---------
+---------待补充---------    
 
 ## 实战题目
 
@@ -229,7 +229,7 @@ public:
 
 **代码实现 2 **
 
-```
+```c++
 class Solution {
 public:
     int ladderLength(string beginWord, string endWord, vector<string>& wordList) {
@@ -283,6 +283,98 @@ public:
 ```
 
 还可以优化的地方，map用hash
+
+
+
+#### [529. 扫雷游戏](https://leetcode-cn.com/problems/minesweeper/)
+
+> 让我们一起来玩扫雷游戏！
+>
+> 给定一个代表游戏板的二维字符矩阵。 **'M'** 代表一个**未挖出的**地雷，**'E'** 代表一个**未挖出的**空方块，**'B'** 代表没有相邻（上，下，左，右，和所有4个对角线）地雷的**已挖出的**空白方块，**数字**（'1' 到 '8'）表示有多少地雷与这块**已挖出的**方块相邻，**'X'** 则表示一个**已挖出的**地雷。
+>
+> 现在给出在所有**未挖出的**方块中（'M'或者'E'）的下一个点击位置（行和列索引），根据以下规则，返回相应位置被点击后对应的面板：
+>
+> 1. 如果一个地雷（'M'）被挖出，游戏就结束了- 把它改为 **'X'**。
+> 2. 如果一个**没有相邻地雷**的空方块（'E'）被挖出，修改它为（'B'），并且所有和其相邻的方块都应该被递归地揭露。
+> 3. 如果一个**至少与一个地雷相邻**的空方块（'E'）被挖出，修改它为数字（'1'到'8'），表示相邻地雷的数量。
+> 4. 如果在此次点击中，若无更多方块可被揭露，则返回面板。
+>
+>  
+>
+> **示例 1：**
+>
+> ```
+> 输入: 
+> 
+> [['E', 'E', 'E', 'E', 'E'],
+>  ['E', 'E', 'M', 'E', 'E'],
+>  ['E', 'E', 'E', 'E', 'E'],
+>  ['E', 'E', 'E', 'E', 'E']]
+> 
+> Click : [3,0]
+> 
+> 输出: 
+> 
+> [['B', '1', 'E', '1', 'B'],
+>  ['B', '1', 'M', '1', 'B'],
+>  ['B', '1', '1', '1', 'B'],
+>  ['B', 'B', 'B', 'B', 'B']]
+> 
+> 解释:
+> ```
+>
+> **示例 2：**
+>
+> ```
+> 输入: 
+> 
+> [['B', '1', 'E', '1', 'B'],
+>  ['B', '1', 'M', '1', 'B'],
+>  ['B', '1', '1', '1', 'B'],
+>  ['B', 'B', 'B', 'B', 'B']]
+> 
+> Click : [1,2]
+> 
+> 输出: 
+> 
+> [['B', '1', 'E', '1', 'B'],
+>  ['B', '1', 'X', '1', 'B'],
+>  ['B', '1', '1', '1', 'B'],
+>  ['B', 'B', 'B', 'B', 'B']]
+> 
+> 解释:
+> ```
+>
+>  
+>
+> **注意：**
+>
+> 1. 输入矩阵的宽和高的范围为 [1,50]。
+> 2. 点击的位置只能是未被挖出的方块 ('M' 或者 'E')，这也意味着面板至少包含一个可点击的方块。
+> 3. 输入面板不会是游戏结束的状态（即有地雷已被挖出）。
+> 4. 简单起见，未提及的规则在这个问题中可被忽略。例如，当游戏结束时你不需要挖出所有地雷，考虑所有你可能赢得游戏或标记方块的情况。
+
+**解题思路**
+
+
+
+**代码实现**
+
+```
+/*
+用广度优先搜索  队列
+需要判断每个结点的上，下，左，右，和所有4个对角线这个8点是否是地雷
+*/
+
+class Solution {
+public:
+    vector<vector<char>> updateBoard(vector<vector<char>>& board, vector<int>& click) {
+
+    }
+};
+```
+
+
 
 
 
@@ -462,7 +554,24 @@ public:
 
 
 
+#### [322. 零钱兑换](https://leetcode-cn.com/problems/coin-change/)
 
+> 给定不同面额的硬币 coins 和一个总金额 amount。编写一个函数来计算可以凑成总金额所需的最少的硬币个数。如果没有任何一种硬币组合能组成总金额，返回 `-1`。
+>
+> **示例 1:**
+>
+> ```
+> 输入: coins = [1, 2, 5], amount = 11
+> 输出: 3 
+> 解释: 11 = 5 + 5 + 1
+> ```
+>
+> **示例 2:**
+>
+> ```
+> 输入: coins = [2], amount = 3
+> 输出: -1
+> ```
 
 
 
@@ -473,3 +582,188 @@ public:
 ---------待补充---------
 
 ## 实战题目
+
+#### [153. 寻找旋转排序数组中的最小值](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/)
+
+> 假设按照升序排序的数组在预先未知的某个点上进行了旋转。
+>
+> ( 例如，数组 `[0,1,2,4,5,6,7]`  可能变为 `[4,5,6,7,0,1,2]` )。
+>
+> 请找出其中最小的元素。
+>
+> 你可以假设数组中不存在重复元素。
+>
+> **示例 1:**
+>
+> ```
+> 输入: [3,4,5,1,2]
+> 输出: 1
+> ```
+>
+> **示例 2:**
+>
+> ```
+> 输入: [4,5,6,7,0,1,2]
+> 输出: 0
+> ```
+
+**解题思路 **
+
+参考 [官方题解](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/solution/xun-zhao-xuan-zhuan-pai-lie-shu-zu-zhong-de-zui-xi/)
+
+这题最简单和直观的方法就是遍历一遍数组，初始化一个最小值，然后依次与数组的每个值比较，并更新最小值。
+
+时间复杂度为O(n)。
+
+但是注意到虽然数组被旋转了，从整体上来说并不是有序数组，但是数组分为两半分别有序，所有有可以使用二分查找的空间。
+
+还有以下特点：
+
+- 当数组第一个数小于最后一个数时，数组时有序的，第一个数即是最小的数
+- 当   `array[mid - 1] >  array[mid]`  时， `array[mid]` 为最小值
+-  或者当 `array[ mid ] > array[mid + 1]` 时，`array[mid + 1]` 为最小值
+
+**代码实现**
+
+```c++
+class Solution {
+public:
+    int findMin(vector<int>& nums) {
+        int left = 0;
+        int right = nums.size() -1;
+        if(right == 0)
+            return nums[left];
+        //初始时已经是有序的数组，没有被旋转过
+        if(nums[left] < nums[right])
+            return nums[left];
+        while(left <= right){
+            int mid = left + (right - left)/2;
+            if(mid+1 <= right && nums[mid] > nums[ mid + 1])
+                return nums[ mid + 1];
+            if( mid-1 >= 0 && nums[mid -1 ] > nums[mid])
+                return nums[mid];
+           //左边是含有旋转部分的
+            if( nums[0] < nums[mid] ){
+                left = mid + 1;
+            }else{ //右边是含有旋转部分的
+                right = mid - 1;
+            }
+        }
+        return 0;
+    }
+};
+```
+
+
+
+#### [33. 搜索旋转排序数组](https://leetcode-cn.com/problems/search-in-rotated-sorted-array/)
+
+> 假设按照升序排序的数组在预先未知的某个点上进行了旋转。
+>
+> ( 例如，数组 `[0,1,2,4,5,6,7]` 可能变为 `[4,5,6,7,0,1,2]` )。
+>
+> 搜索一个给定的目标值，如果数组中存在这个目标值，则返回它的索引，否则返回 `-1` 。
+>
+> 你可以假设数组中不存在重复的元素。
+>
+> 你的算法时间复杂度必须是 *O*(log *n*) 级别。
+>
+> **示例 1:**
+>
+> ```
+> 输入: nums = [4,5,6,7,0,1,2], target = 0
+> 输出: 4
+> ```
+>
+> **示例 2:**
+>
+> ```
+> 输入: nums = [4,5,6,7,0,1,2], target = 3
+> 输出: -1
+> ```
+
+**解题思路**
+
+和 [153. 寻找旋转排序数组中的最小值](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/)  这题有些相似，数组都是被旋转过的，需要划分区分区间为有序部分和包含旋转的无部分。
+
+参考  [官方题解](https://leetcode-cn.com/problems/search-in-rotated-sorted-array/solution/sou-suo-xuan-zhuan-pai-xu-shu-zu-by-leetcode-solut/) 
+
+对于有序部分，我们用target和这个区间的头尾比较，即可知道 target 是在这个区间，还是在另一个区间，从而收缩 `[ left,right ]`的范围
+
+**代码实现**
+
+```c++
+class Solution {
+public:
+    int search(vector<int>& nums, int target) {
+        int left = 0;
+        int len = nums.size();
+        if(len == 0)
+            return -1;
+        if( len == 1)
+            return nums[0] == target ?  0 :  -1;
+        int right = len -1;      
+        while(left <= right){
+            int mid = left + ( right -left )/2;
+            if( nums[mid] == target)
+                return mid;
+            // [ left ,mid ] 是有序部分的
+            if( nums[left] <= nums[mid] ){
+                 if( nums[left] <= target && target < nums[mid] ){
+                     right = mid -1;
+                 }else{
+                     left = mid + 1;
+                 }
+            }else{//后半部分是有序的
+                if( nums[mid] < target && target <= nums[right]){
+                    left = mid + 1;
+                }else{
+                    right = mid -1;
+                }
+            }
+        }
+        return -1;
+    }
+};
+```
+
+
+
+#### [74. 搜索二维矩阵](https://leetcode-cn.com/problems/search-a-2d-matrix/)
+
+> 编写一个高效的算法来判断 *m* x *n* 矩阵中，是否存在一个目标值。该矩阵具有如下特性：
+>
+> - 每行中的整数从左到右按升序排列。
+> - 每行的第一个整数大于前一行的最后一个整数。
+>
+> **示例 1:**
+>
+> ```
+> 输入:
+> matrix = [
+>   [1,   3,  5,  7],
+>   [10, 11, 16, 20],
+>   [23, 30, 34, 50]
+> ]
+> target = 3
+> 输出: true
+> ```
+>
+> **示例 2:**
+>
+> ```
+> 输入:
+> matrix = [
+>   [1,   3,  5,  7],
+>   [10, 11, 16, 20],
+>   [23, 30, 34, 50]
+> ]
+> target = 13
+> 输出: false
+> ```
+
+**解题思路**
+
+
+
+**代码实现**
