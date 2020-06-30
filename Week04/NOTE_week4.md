@@ -153,11 +153,11 @@ public:
 > 解释: endWord "cog" 不在字典中，所以无法进行转换。
 > ```
 
-**解题思路1**(暴力，不推荐)
+**解题思路 1 **(暴力，不推荐)
 
 先做的  [433. 最小基因变化](https://leetcode-cn.com/problems/minimum-genetic-mutation/)  这题，所以乍一看，和这题感觉几乎一样，只不过是这题每次换要换26个字母，而不是那题原来的4个字母，只要测试用例不是很为难人。。。应该可以过吧，于是说干就干。。。
 
-**代码实现1**
+**代码实现 1**
 
 ```c++
 /*
@@ -207,7 +207,7 @@ public:
 };
 ```
 
-**解题思路2 (图)**
+**解题思路 2  (图)**
 
 参考了 【[官方题解](https://leetcode-cn.com/problems/word-ladder/solution/dan-ci-jie-long-by-leetcode/)】，有了这个图就好说了
 
@@ -227,7 +227,7 @@ public:
 
 3.既然是图，怎样防止重复遍历到结点
 
-**代码实现2**
+**代码实现 2 **
 
 ```
 class Solution {
