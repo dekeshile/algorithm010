@@ -299,8 +299,6 @@ public:
 > 3. 如果一个**至少与一个地雷相邻**的空方块（'E'）被挖出，修改它为数字（'1'到'8'），表示相邻地雷的数量。
 > 4. 如果在此次点击中，若无更多方块可被揭露，则返回面板。
 >
->  
->
 > **示例 1：**
 >
 > ```
@@ -319,9 +317,11 @@ public:
 >  ['B', '1', 'M', '1', 'B'],
 >  ['B', '1', '1', '1', 'B'],
 >  ['B', 'B', 'B', 'B', 'B']]
-> 
-> 解释:
 > ```
+>
+> 解释:
+>
+> ![img](https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/10/12/minesweeper_example_1.png)
 >
 > **示例 2：**
 >
@@ -341,11 +341,9 @@ public:
 >  ['B', '1', 'X', '1', 'B'],
 >  ['B', '1', '1', '1', 'B'],
 >  ['B', 'B', 'B', 'B', 'B']]
-> 
-> 解释:
 > ```
 >
->  
+>  解释:![img](https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/10/12/minesweeper_example_2.png)
 >
 > **注意：**
 >
@@ -356,23 +354,139 @@ public:
 
 **解题思路**
 
+判断方向，走方向可以借鉴之前做的  [874. 模拟行走机器人](https://leetcode-cn.com/problems/walking-robot-simulation/)  ，这里有8个方向，就用大小为8的两个数组x,y分别表示往8个方向分别走时，坐标x,y要怎么变化。
 
+> 如果一个**没有相邻地雷**的空方块（'E'）被挖出，修改它为（'B'），并且所有和其相邻的方块都应该被递归地揭露
+
+从这句话就可以看出我们应该从给定的坐标点开始层层向外扩展，去改变每一个格子的状态，所以可以用广度优先搜索去进行遍历。
+
+另外一个问题是当前遍历到的格子周围没有地雷，如果把这些周围的格子标记成了‘’B’，但是后面更外一层会发现这些周围的格子的更外层是有地雷的，这怎么办？
+
+其实我们遍历当前格子周围的格子发现没有地雷时，可以暂且标记为‘B’,然后将这些格子入队列，当我们下一次再从队列中取出这些格子时，是会去遍历其周围的格子的，这时候其周围的格子就包括了刚才所说的更外一层的格子，当这更外一层有地雷时，这个格子的状态也会被再次更改了，所以是一个慢慢发现的过程。
 
 **代码实现**
 
-```
+```c++
 /*
-用广度优先搜索  队列
+用广度优先搜索 -> 队列
 需要判断每个结点的上，下，左，右，和所有4个对角线这个8点是否是地雷
+前面入队的没有发现周围有地雷，有可能在后面的时候发现了，所以后面还会进行更新
 */
-
+#define valid(x,y,m,n) ( x >= 0 && x < m && y>=0 && y< n )
 class Solution {
 public:
-    vector<vector<char>> updateBoard(vector<vector<char>>& board, vector<int>& click) {
+    const  int dx[8] = {0,1,1,1,0,-1,-1,-1};
+    const  int dy[8] = {1,1,0,-1,-1,-1,0,1};
+    vector<vector<char>> updateBoard(vector<vector<char>>& board, vector<int>& click) 	  {
+        if(board[click[0]][click[1]] == 'M'){
+            board[click[0]][click[1]] = 'X';
+            return board;
+        }
 
+        int m = board.size();
+        int n= board[0].size();
+        queue<pair<int,int>> que;
+        que.push(pair<int,int>(click[0],click[1]));
+        board[click[0]][click[1]] = 'B';
+        while(!que.empty()){
+            pair<int,int> top = que.front();
+            que.pop();
+            int x = top.first;
+            int y = top.second;
+            int Mnums = 0;
+            //判断周围有几个地雷
+            for(int i=0;i<8;i++){
+                int newx = x+dx[i];
+                int newy = y+dy[i];
+                if( valid(newx,newy,m,n) && board[newx][newy] == 'M'){
+                    Mnums++;
+                }
+            }
+
+            if(Mnums == 0){
+                for(int i=0;i<8;i++){
+                    int newx = x+dx[i];
+                    int newy = y+dy[i];
+                    if( valid(newx,newy,m,n) && board[newx][newy] == 'E'){
+                         board[newx][newy] = 'B';
+                         que.push(pair<int,int>(newx,newy));
+                    }
+                }
+            }else{
+                board[x][y] = Mnums + '0';//转为字符
+            }
+        }
+        return board;
     }
 };
 ```
+
+
+
+#### [126. 单词接龙 II](https://leetcode-cn.com/problems/word-ladder-ii/)
+
+> 给定两个单词（*beginWord* 和 *endWord*）和一个字典 *wordList*，找出所有从 *beginWord* 到 *endWord* 的最短转换序列。转换需遵循如下规则：
+>
+> 1. 每次转换只能改变一个字母。
+> 2. 转换后得到的单词必须是字典中的单词。
+>
+> **说明:**
+>
+> - 如果不存在这样的转换序列，返回一个空列表。
+> - 所有单词具有相同的长度。
+> - 所有单词只由小写字母组成。
+> - 字典中不存在重复的单词。
+> - 你可以假设 *beginWord* 和 *endWord* 是非空的，且二者不相同。
+>
+> **示例 1:**
+>
+> ```
+> 输入:
+> beginWord = "hit",
+> endWord = "cog",
+> wordList = ["hot","dot","dog","lot","log","cog"]
+> 
+> 输出:
+> [
+>   ["hit","hot","dot","dog","cog"],
+>   ["hit","hot","lot","log","cog"]
+> ]
+> ```
+>
+> **示例 2:**
+>
+> ```
+> 输入:
+> beginWord = "hit"
+> endWord = "cog"
+> wordList = ["hot","dot","dog","lot","log"]
+> 
+> 输出: []
+> 
+> 解释: endWord "cog" 不在字典中，所以不存在符合要求的转换序列。
+> ```
+
+**解题思路 1 （超时）**
+
+我自己实现的第一版是在  [127. 单词接龙](https://leetcode-cn.com/problems/word-ladder/)  的基础用vector记录每条单词接龙的路径，队列中这时候放的不再是一个单词，而是`vector`。每次取出队列头，查看`vector`的尾元素是否等于`endWord`，决定是否将其`push`到结果集中。
+
+这其中还有个难点就是如何不重复访问单词？
+
+有两种实现方法。一种是全局用一个`visited`的hash表标记单词是否被使用过，但是还需要一个层次的`layerVisited`来标记这个单词在这层被使用过，因为同一层是可以访问相同的单词的，所以在结束这层时，我们才能在visited里真正标记这些单词被访问过。
+
+另外一种方法借鉴 【官方题解】，使用count 数组，`count[word]` 表示 `beginWord` 对应的点到word的代价（即转换次数）。初始情况下其所有元素初始化为无穷大。
+
+遍历和它连通的节点（假设为 `to` ）
+
+如果 `cost[to] >=cost[now]+1`  的加入队列，并更新 `cost[to]=cost[now]+1`
+
+如果  `cost[to] < cost[now] + 1` ，说明这个节点已经被访问过，不需要再考虑。
+
+但是这种方法会超时！！！！ 
+
+**解题思路 2 （参考官方题解）**
+
+**解题思路 3 （参考题解 广搜 + 深搜）**
 
 
 
