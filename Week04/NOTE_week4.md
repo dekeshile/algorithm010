@@ -321,7 +321,7 @@ public:
 >
 > 解释:
 >
-> ![img](https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/10/12/minesweeper_example_1.png)
+> ![img](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/minesweeper_example_1.png)
 >
 > **示例 2：**
 >
@@ -343,7 +343,7 @@ public:
 >  ['B', 'B', 'B', 'B', 'B']]
 > ```
 >
->  解释:![img](https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2018/10/12/minesweeper_example_2.png)
+>  解释:![img](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/minesweeper_example_2.png)
 >
 > **注意：**
 >
@@ -687,6 +687,75 @@ public:
 > 输出: -1
 > ```
 
+**解题思路 1 （动态规划，迭代，自底向上） **
+
+参考 [官方题解](https://leetcode-cn.com/problems/coin-change/solution/322-ling-qian-dui-huan-by-leetcode-solution/)
+
+事实上这是一道动态规划的题目，最优解可以从其子问题的最优解构造出来。
+
+总金额 `amount` 由 硬币面额 `coins [ c0,c1,.......cn-1]` 组成
+
+设 `Func( amount )`  函数表示组成金额 `amount` 的最少硬币数
+
+如果我们从 `amount` 里减去最后一次加进来的那个硬币面额 c, 那么 `Func(amount - c )  + 1`  代表了组成 `Func( amount )`  的硬币个数。由此可以得到动态转移方程：
+
+​																 `Func(amount - c )  + 1`
+
+这里的  `Func(amount - c )`  可能是   `Func(amount - c0 )` ，  `Func(amount - c1 )`  ，........  `Func(amount - cn-1 )` , 要使得   `Func( amount )`  最小，那么  `Func(amount - c )` 就要取最小
+
+所以可以得到以下递推关系：
+
+- `` Func( amount ) = min F(  amount - ci )``   其中  `0 <= i <=  n-1 && amout-ci >  0`
+-  `Func( amount ) = 0`， 当 `` amount = 0`时
+-  `Func( amount ) = -1`， 当  `n= 0` 时, 即备选的硬币面额都没有
+
+**示例**
+
+总金额 `amount  = 6` ，`coins = { 1,2,3 } ` , 递归树如下
+
+
+
+![img](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/e0fd2252775b89649ceb6e867ff0e546ec77621edb566693482c8588a98066b8-file_1583404923188)
+
+**代码实现 1**
+
+```c++
+/*
+    动态规划，自底向上迭代计算
+    参考了官方题解，理解了一点再写的
+*/
+class Solution {
+public:
+    int coinChange(vector<int>& coins, int amount) {
+        int MAX = amount +1;
+        /*
+            dp数组的含义：dp[i] 表示总金额为 i 时，由coins[x ,y ,z,...]能凑成的最少的硬币个数
+        */
+        vector<int> dp(amount+1,MAX);//数组大小amount+1，初始时数组中每个值都为MAX
+        dp[0] = 0;
+        //从总金额为1元开始计算，直到总金额为amount
+        for(int i=1;i<=amount;i++) {
+            //遍历coins数组，对每个总金额 i 来 计算 其 dp[i]
+            for(int j = 0; j < coins.size();j++ ) {
+                //当前枚举的硬币面额肯定不能大于总金额
+                if( coins[j] <= i ){
+                /*
+                     每枚举到一个硬币面额coin,都和原dp[i]比较，力求dp[i]最小，即硬币个数最小
+                     总金额 i-coins[i] 再加上金额coins[i]就达到金额 i ,相应的其硬币数也就是加1
+                */
+                    dp[i] = min(dp[i],dp[ i-coins[j] ] + 1);
+                }
+            }
+        }
+        return ( dp[amount] == MAX ? -1 : dp[amount] );
+    }
+};
+```
+
+
+
+
+
 
 
 # 第11课 | 二分查找
@@ -878,6 +947,64 @@ public:
 
 **解题思路**
 
+外层使用二分查找，锁定某一行后，行内再使用二分查找
 
+具体的：
+
+外层以行下标作为 left 和 right ，用 `matrix [mid] [0]`   和 target 比较大小，
+
+- `target  <  matrix [mid] [0]`   则right 向上偏移
+
+- `target  >  matrix [mid] [0]`  , 则还细分为两种
+
+     	  `target  <  matrix [mid] [n-1]`  ，则 target位于 mid 这行，这这行内再使用普通的二分查找即可
+
+  ​          `target  >  matrix [mid] [n-1]`   则 left  向下偏移
 
 **代码实现**
+
+```c++
+class Solution {
+public:
+    bool searchMatrix(vector<vector<int>>& matrix, int target) {
+        int left = 0;
+        int right = matrix.size();
+        int n;
+        if( right != 0 && matrix[0].size() != 0 )
+            n = matrix[0].size();
+        else
+           return false;
+        //外部使用二分查找
+        while(left < right){
+            int mid = left + ( right-left )/2;
+            if( matrix[mid][0] == target)
+                return true;
+            else if( target < matrix[mid][0] ){
+                right = mid;
+            }else{
+                //在这行内部用二分查找
+                if(  target <= matrix[mid][n-1] ){
+                    int inleft = 0;
+                    int inright = n;
+                    while(inleft < inright){
+                        int inmid = inleft + ( inright-inleft )/2;
+                        if( matrix[mid][inmid] == target){
+                            return true;
+                        }else if(target < matrix[mid][inmid]  ){
+                            inright = inmid;
+                        }else{
+                            inleft = inmid+1;
+                        }
+                    }
+                    return false;
+                }else{
+                    left = mid + 1;
+                }
+
+            }
+        }
+        return false;
+    }
+};
+```
+
