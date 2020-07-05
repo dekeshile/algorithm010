@@ -61,7 +61,7 @@ while stack:
 ...
 ```
 
-**BFS 代码 **
+**BFS 代码**
 
 ```python
 def BFS(graph, start, end): 
@@ -223,7 +223,7 @@ public:
 > 解释: endWord "cog" 不在字典中，所以无法进行转换。
 > ```
 
-**解题思路 1 ** (暴力，不推荐)
+**解题思路 1** (暴力，不推荐)
 
 先做的  [433. 最小基因变化](https://leetcode-cn.com/problems/minimum-genetic-mutation/)  这题，所以乍一看，和这题感觉几乎一样，只不过是这题每次换要换26个字母，而不是那题原来的4个字母，只要测试用例不是很为难人。。。应该可以过吧，于是说干就干。。。
 
@@ -297,7 +297,7 @@ public:
 
 3.既然是图，怎样防止重复遍历到结点
 
-**代码实现 2 **
+**代码实现 2**
 
 ```c++
 class Solution {
@@ -568,6 +568,8 @@ public:
 
 
 
+
+
 # 第10课 |  贪心算法
 
 ## 知识点
@@ -771,7 +773,7 @@ public:
 > 输出: -1
 > ```
 
-**解题思路 1 （动态规划，迭代，自底向上） **
+**解题思路 1 (动态规划，迭代，自底向上)**
 
 参考 [官方题解](https://leetcode-cn.com/problems/coin-change/solution/322-ling-qian-dui-huan-by-leetcode-solution/)
 
@@ -796,8 +798,6 @@ public:
 **示例**
 
 总金额 `amount  = 6` ，`coins = { 1,2,3 } ` , 递归树如下
-
-
 
 ![img](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/e0fd2252775b89649ceb6e867ff0e546ec77621edb566693482c8588a98066b8-file_1583404923188)
 
@@ -891,7 +891,7 @@ while left <= right:
 > 输出: 0
 > ```
 
-**解题思路 **
+**解题思路**
 
 参考 [官方题解](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/solution/xun-zhao-xuan-zhuan-pai-lie-shu-zu-zhong-de-zui-xi/)
 
