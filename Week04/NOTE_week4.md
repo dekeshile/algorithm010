@@ -1,12 +1,82 @@
 **目录**
-
-
+- [第9课 | 深度优先搜索和广度优先搜索](#第9课--深度优先搜索和广度优先搜索)
+  - [知识点](#知识点)
+  - [实战题目](#实战题目)
+      - [433. 最小基因变化](#433-最小基因变化)
+      - [127. 单词接龙](#127-单词接龙)
+      - [529. 扫雷游戏](#529-扫雷游戏)
+      - [126. 单词接龙 II](#126-单词接龙-ii)
+- [第10课 |  贪心算法](#第10课--贪心算法)
+  - [知识点](#知识点-1)
+  - [实战题目](#实战题目-1)
+      - [860. 柠檬水找零](#860-柠檬水找零)
+      - [515. 在每个树行中找最大值](#515-在每个树行中找最大值)
+      - [322. 零钱兑换](#322-零钱兑换)
+- [第11课 | 二分查找](#第11课--二分查找)
+  - [知识点](#知识点-2)
+  - [实战题目](#实战题目-2)
+      - [153. 寻找旋转排序数组中的最小值](#153-寻找旋转排序数组中的最小值)
+      - [33. 搜索旋转排序数组](#33-搜索旋转排序数组)
+      - [74. 搜索二维矩阵](#74-搜索二维矩阵)
 
 # 第9课 | 深度优先搜索和广度优先搜索
 
 ## 知识点
 
----------待补充---------    
+**遍历顺序**
+
+<img src="https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/image-20200706003554228.png" alt="image-20200706003554228" style="zoom:50%;" />
+
+**DFS 代码 - 递归写法**
+
+```python
+visited = set() 
+def dfs(node, visited): 
+if node in visited: # terminator 
+# already visited 
+return 
+ visited.add(node) 
+# process current node here. 
+...
+for next_node in node.children(): 
+ if not next_node in visited: 
+ dfs(next_node, visited)
+```
+
+**DFS 代码 - 非递归写法**
+
+```python
+
+def DFS(self, tree): 
+if tree.root is None: 
+ return [] 
+ visited, stack = [], [tree.root] 
+while stack: 
+ node = stack.pop() 
+ visited.add(node) 
+ process (node) 
+ nodes = generate_related_nodes(node) 
+ stack.push(nodes) 
+# other processing work 
+...
+```
+
+**BFS 代码 **
+
+```python
+def BFS(graph, start, end): 
+ queue = [] 
+ queue.append([start]) 
+ visited.add(start) 
+while queue: 
+ node = queue.pop() 
+ visited.add(node) 
+ process(node) 
+ nodes = generate_related_nodes(node) 
+ queue.push(nodes)
+```
+
+
 
 ## 实战题目
 
@@ -153,7 +223,7 @@ public:
 > 解释: endWord "cog" 不在字典中，所以无法进行转换。
 > ```
 
-**解题思路 1 **(暴力，不推荐)
+**解题思路 1 ** (暴力，不推荐)
 
 先做的  [433. 最小基因变化](https://leetcode-cn.com/problems/minimum-genetic-mutation/)  这题，所以乍一看，和这题感觉几乎一样，只不过是这题每次换要换26个字母，而不是那题原来的4个字母，只要测试用例不是很为难人。。。应该可以过吧，于是说干就干。。。
 
@@ -211,7 +281,7 @@ public:
 
 参考了 【[官方题解](https://leetcode-cn.com/problems/word-ladder/solution/dan-ci-jie-long-by-leetcode/)】，有了这个图就好说了
 
-![Word_Ladder_2](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/Word_Ladder_2.png)
+<img src="https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/Word_Ladder_2.png" alt="Word_Ladder_2" style="zoom: 67%;" />
 
 核心思想，把只相差一个字母的单词(包括start和字典中的所有单词)用线连在一起，就构成了一张图
 
@@ -282,6 +352,8 @@ public:
 };
 ```
 
+
+
 还可以优化的地方，map用hash
 
 
@@ -321,7 +393,7 @@ public:
 >
 > 解释:
 >
-> ![img](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/minesweeper_example_1.png)
+> <img src="https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/minesweeper_example_1.png" alt="img" style="zoom:50%;" />
 >
 > **示例 2：**
 >
@@ -343,7 +415,7 @@ public:
 >  ['B', 'B', 'B', 'B', 'B']]
 > ```
 >
->  解释:![img](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/minesweeper_example_2.png)
+>  解释:<img src="https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/minesweeper_example_2.png" alt="img" style="zoom:50%;" />
 >
 > **注意：**
 >
@@ -474,7 +546,7 @@ public:
 
 有两种实现方法。一种是全局用一个`visited`的hash表标记单词是否被使用过，但是还需要一个层次的`layerVisited`来标记这个单词在这层被使用过，因为同一层是可以访问相同的单词的，所以在结束这层时，我们才能在visited里真正标记这些单词被访问过。
 
-另外一种方法借鉴 【官方题解】，使用count 数组，`count[word]` 表示 `beginWord` 对应的点到word的代价（即转换次数）。初始情况下其所有元素初始化为无穷大。
+另外一种方法借鉴 【官方题解】，使用count 数组，`count[word]` 表示 `beginWord` 对应的点到 word 的代价（即转换次数）。初始情况下其所有元素初始化为无穷大。
 
 遍历和它连通的节点（假设为 `to` ）
 
@@ -486,9 +558,13 @@ public:
 
 **解题思路 2 （参考官方题解）**
 
+**代码实现2**
+
+```
+
+```
+
 **解题思路 3 （参考题解 广搜 + 深搜）**
-
-
 
 
 
@@ -496,7 +572,15 @@ public:
 
 ## 知识点
 
----------待补充---------
+**贪心算法 Greedy**
+
+贪心算法是一种在每一步选择中都采取在当前状态下最好或最优（即最有利）的选择，从而希望导致结果是全局最好或最优的算法。 贪心算法与动态规划的不同在于它对每个子问题的解决方案都做出选择，**不能回退**。动态规划则会保存以前的运算结果，并根据以前的结果对当前进行选择，有回退功能。
+
+贪心法可以解决一些最优化问题，如：求图中的最小生成树、求哈夫曼编码等。然而对于工程和生活中的问题，贪心法一般不能得到我们所要求的答案。 一旦一个问题可以通过贪心法来解决，那么贪心法一般是解决这个问题的最好办法。由于贪心法的高效性以及其所求得的答案比较接近最优结果，贪心法也可以用作辅助算法或者直接解决一些要求结果不特别精确的问题。
+
+**适用贪心算法的场景**
+
+简单地说，问题能够分解成子问题来解决，子问题的最优解能递推到最终问题的最优解。这种子问题最优解称为最优子结构。
 
 ## 实战题目
 
@@ -754,15 +838,32 @@ public:
 
 
 
-
-
-
-
 # 第11课 | 二分查找
 
 ## 知识点
 
----------待补充---------
+**二分查找的前提**
+
+1. 目标函数单调性（单调递增或者递减）
+2. 存在上下界（bounded）
+3. 能够通过索引访问（index accessible)
+
+**代码模版**
+
+```python
+left, right = 0, len(array) - 1 
+while left <= right: 
+ mid = (left + right) / 2 
+ if array[mid] == target: 
+ # find the target!! 
+ break or return result 
+ elif array[mid] < target: 
+ left = mid + 1 
+ else: 
+ right = mid - 1
+```
+
+
 
 ## 实战题目
 

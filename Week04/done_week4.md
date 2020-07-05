@@ -2,8 +2,8 @@
 
 ## 参考链接
 
-- 🔲[ DFS 代码模板（递归写法、非递归写法）](https://shimo.im/docs/UdY2UUKtliYXmk8t/)
-- 🔲[ BFS 代码模板](https://shimo.im/docs/ZBghMEZWix0Lc2jQ/)
+- ✅[ DFS 代码模板（递归写法、非递归写法）](https://shimo.im/docs/UdY2UUKtliYXmk8t/)
+- ✅[ BFS 代码模板](https://shimo.im/docs/ZBghMEZWix0Lc2jQ/)
 
 ## 实战题目
 
@@ -15,9 +15,9 @@
 ## 课后作业
 
 - ✅[单词接龙](https://leetcode-cn.com/problems/word-ladder/description/)（亚马逊在半年内面试常考）
-- 🔲[单词接龙 II ](https://leetcode-cn.com/problems/word-ladder-ii/description/)（微软、亚马逊、Facebook 在半年内面试中考过）
+- 🔲[单词接龙 II ](https://leetcode-cn.com/problems/word-ladder-ii/description/)（微软、亚马逊、Facebook 在半年内面试中考过） (**暂时还不理解**)
 - ✅[岛屿数量](https://leetcode-cn.com/problems/number-of-islands/)（近半年内，亚马逊在面试中考查此题达到 350 次）
-- 🔲[扫雷游戏](https://leetcode-cn.com/problems/minesweeper/description/)（亚马逊、Facebook 在半年内面试中考过）
+- ✅[扫雷游戏](https://leetcode-cn.com/problems/minesweeper/description/)（亚马逊、Facebook 在半年内面试中考过）
 
 
 
@@ -25,7 +25,7 @@
 
 ## 参考链接
 
-- 🔲[ coin change 题目](https://leetcode-cn.com/problems/coin-change/)
+- ✅[ coin change 题目](https://leetcode-cn.com/problems/coin-change/)
 - 🔲[动态规划定义](https://zh.wikipedia.org/wiki/动态规划)
 
 ## 课后作业
@@ -43,7 +43,7 @@
 
 ## 参考链接
 
-- 🔲[二分查找代码模板](https://shimo.im/docs/xvIIfeEzWYEUdBPD/)
+- ✅[二分查找代码模板](https://shimo.im/docs/xvIIfeEzWYEUdBPD/)
 - 🔲[ Fast InvSqrt() 扩展阅读](https://www.beyond3d.com/content/articles/8/)
 
 ## 实战题目
@@ -53,9 +53,9 @@
 
 ## 课后作业
 
-- 🔲[搜索旋转排序数组](https://leetcode-cn.com/problems/search-in-rotated-sorted-array/)（Facebook、字节跳动、亚马逊在半年内面试常考）
-- 🔲[搜索二维矩阵](https://leetcode-cn.com/problems/search-a-2d-matrix/)（亚马逊、微软、Facebook 在半年内面试中考过）
-- 🔲[寻找旋转排序数组中的最小值](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/)（亚马逊、微软、字节跳动在半年内面试中考过）
+- ✅[搜索旋转排序数组](https://leetcode-cn.com/problems/search-in-rotated-sorted-array/)（Facebook、字节跳动、亚马逊在半年内面试常考）
+- ✅[搜索二维矩阵](https://leetcode-cn.com/problems/search-a-2d-matrix/)（亚马逊、微软、Facebook 在半年内面试中考过）
+- ✅[寻找旋转排序数组中的最小值](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/)（亚马逊、微软、字节跳动在半年内面试中考过）
 - 使用二分查找，寻找一个半有序数组 [4, 5, 6, 7, 0, 1, 2] 中间无序的地方
   说明：同学们可以将自己的思路、代码写在学习总结中
 
@@ -79,11 +79,11 @@
 
 - ✅[单词接龙](https://leetcode-cn.com/problems/word-ladder/description/)（亚马逊在半年内面试常考）
 - ✅[岛屿数量](https://leetcode-cn.com/problems/number-of-islands/)（近半年内，亚马逊在面试中考查此题达到 350 次）
-- 🔲[扫雷游戏](https://leetcode-cn.com/problems/minesweeper/description/)（亚马逊、Facebook 在半年内面试中考过）
+- ✅[扫雷游戏](https://leetcode-cn.com/problems/minesweeper/description/)（亚马逊、Facebook 在半年内面试中考过）
 - ✅[跳跃游戏](https://leetcode-cn.com/problems/jump-game/) （亚马逊、华为、Facebook 在半年内面试中考过）
-- 🔲[搜索旋转排序数组](https://leetcode-cn.com/problems/search-in-rotated-sorted-array/)（Facebook、字节跳动、亚马逊在半年内面试常考）
-- 🔲[搜索二维矩阵](https://leetcode-cn.com/problems/search-a-2d-matrix/)（亚马逊、微软、Facebook 在半年内面试中考过）
-- 🔲[寻找旋转排序数组中的最小值](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/)（亚马逊、微软、字节跳动在半年内面试中考过）
+- ✅[搜索旋转排序数组](https://leetcode-cn.com/problems/search-in-rotated-sorted-array/)（Facebook、字节跳动、亚马逊在半年内面试常考）
+- ✅[搜索二维矩阵](https://leetcode-cn.com/problems/search-a-2d-matrix/)（亚马逊、微软、Facebook 在半年内面试中考过）
+- ✅[寻找旋转排序数组中的最小值](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/)（亚马逊、微软、字节跳动在半年内面试中考过）
 
 ### 困难
 
