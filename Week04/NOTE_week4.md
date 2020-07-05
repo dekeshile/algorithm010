@@ -799,7 +799,7 @@ public:
 
 总金额 `amount  = 6` ，`coins = { 1,2,3 } ` , 递归树如下
 
-![img](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/e0fd2252775b89649ceb6e867ff0e546ec77621edb566693482c8588a98066b8-file_1583404923188)
+![](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/recursive-tree.png)
 
 **代码实现 1**
 
