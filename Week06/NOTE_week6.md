@@ -50,7 +50,7 @@ https://en.wikipedia.org/wiki/Dynamic_programming
 - 储存中间状态：opt[i] 
 - 递推公式（美其名曰：状态转移方程或者 DP 方程） 
 
- $$ Fib: opt[i] = opt[n-1] + opt[n-2] $$
+ $$Fib: opt[i] = opt[n-1] + opt[n-2]$$
 
 二维路径：$$opt[i,j] = opt[i+1][j] + opt[i][j+1] $$  (且判断a[i,j]是否空地）
 
