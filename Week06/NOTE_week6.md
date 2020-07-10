@@ -51,6 +51,7 @@ https://en.wikipedia.org/wiki/Dynamic_programming
 - 递推公式（美其名曰：状态转移方程或者 DP 方程） 
 
  $$Fib: opt[i] = opt[n-1] + opt[n-2]$$
+ <img src="https://latex.codecogs.com/gif.latex?Fib:&space;opt[i]&space;=&space;opt[n-1]&space;&plus;&space;opt[n-2]" title="Fib: opt[i] = opt[n-1] + opt[n-2]" />
 
 二维路径：$$opt[i,j] = opt[i+1][j] + opt[i][j+1] $$  (且判断a[i,j]是否空地）
 
