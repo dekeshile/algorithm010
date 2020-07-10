@@ -175,7 +175,7 @@ public:
 
 3.启发，以后遇到动态规划的题怎么解决
 
-**举个栗子**![](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/u=1307509515,2198846560&fm=26&gp=0.jpg)![index](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/index.jpg)![index1](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/index1.jpg) ![u=1574432094,797329227&fm=26&gp=0](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/u=1574432094,797329227&fm=26&gp=0.gif)
+**举个栗子** ![](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/lizi2.jpg) ![](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/lizi1.jpg)![](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/lizi4.jpg) ![](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/lizi5.gif)
 
 
 
