@@ -1,7 +1,3 @@
-**目录**
-
-[TOC]
-
 # 第12课 | 动态规划
 
 # 一、定义
@@ -12,17 +8,18 @@ https://en.wikipedia.org/wiki/Dynamic_programming
 
 2.“Simplifying a complicated problem by breaking it down into simpler sub-problems”  (in a recursive manner) 
 
-3. Divide & Conquer + Optimal substructure 
+3.Divide & Conquer + Optimal substructure 
 
  分治 + 最优子结构
 
 # 二、关键点
 
-动态规划 和 递归或者分治 没有根本上的区别（关键看有无最优的子结构） 
+**动态规划** 和 **递归** 或者 **分治** 没有根本上的区别（关键看**有无最优的子结构**） 
 
-**共性：找到重复子问题**
+- 共性：找到重复子问题
 
-差异性：最优子结构、中途可以**淘汰**次优解
+- 差异性：最优子结构、中途可以**淘汰**次优解
+
 
 
 
@@ -46,12 +43,15 @@ https://en.wikipedia.org/wiki/Dynamic_programming
 
 **动态规划关键点**
 
-- 最优子结构 opt[n] = best_of(opt[n-1], opt[n-2], …) 
-- 储存中间状态：opt[i] 
-- 递推公式（美其名曰：状态转移方程或者 DP 方程） 
-   <img src="https://latex.codecogs.com/gif.latex?Fib:&space;opt[i]&space;=&space;opt[n-1]&space;&plus;&space;opt[n-2]" title="Fib: opt[i] = opt[n-1] + opt[n-2]" />
+- 最优子结构 *opt[n] = best_of( opt[n-1], opt[n-2], …)*
 
-二维路径 <img src="https://latex.codecogs.com/gif.latex?opt[i,j]&space;=&space;opt[i&plus;1][j]&space;&plus;&space;opt[i][j&plus;1]" title="opt[i,j] = opt[i+1][j] + opt[i][j+1]" />  (且判断a[i,j]是否空地）
+- 储存中间状态：*opt[i]*
+
+- 递推公式（美其名曰：状态转移方程或者 DP 方程）  
+
+  ​	*Fib: opt[i] = opt[n-1] + opt[n-2]*
+
+  ​	二维路径 *opt[i,j] = opt [i+1] [j] + opt [i] [j+1]*  (且判断a[i,j]是否空地）
 
 
 
@@ -92,7 +92,7 @@ https://en.wikipedia.org/wiki/Dynamic_programming
 
 **解题思路**
 
-先做的 [122. 买卖股票的最佳时机 II](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/)这题，所以刚开始看的时候还没看出来这两题有什么区别，后来仔细看才发现，这道题 【**只允许完成一笔交易**】，而 122 这题 为了获得最大利润 【**可以尽可能地完成更多的交易（多次买卖一支股票）**】。
+先做的 【 [122. 买卖股票的最佳时机 II](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/) 】这题，所以刚开始看的时候还没看出来这两题有什么区别，后来仔细看才发现，这道题 【**只允许完成一笔交易**】，而 122 这题 为了获得最大利润 【**可以尽可能地完成更多的交易（多次买卖一支股票）**】。
 
 回到本题，只允许完成一笔交易，使得利润最大，那就是一个后面的最大值减去一个前面的最小值的问题了。
 
@@ -107,7 +107,7 @@ https://en.wikipedia.org/wiki/Dynamic_programming
 
 **复杂度分析**
 
-一趟遍历 ,所以是O(n)
+一趟遍历 ,所以是 `O(n)`
 
 **代码实现**
 
@@ -149,45 +149,51 @@ public:
 > 解释: 对应的交易状态为: [买入, 卖出, 冷冻期, 买入, 卖出]
 > ```
 
-**解题思路 **
+**解题思路**
 
-1.参考官方题解之后自己理解的 [官方题解](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/solution/zui-jia-mai-mai-gu-piao-shi-ji-han-leng-dong-qi-4/)
+> 1.参考  [官方题解](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/solution/zui-jia-mai-mai-gu-piao-shi-ji-han-leng-dong-qi-4/) 
 
-**定义**
+属于动态规划问题
 
-- <img src="https://latex.codecogs.com/gif.latex?f[i][0]&space;=&space;haveOne" title="f[i][0] = haveOne" /> ，第 i 天结束之后持有一支股票得到的收益(第i天买入了股票或者第i-1天持有股票第i不做任何操作)
-- <img src="https://latex.codecogs.com/gif.latex?f[i][1]&space;=&space;cold" title="f[i][1] = cold" />，第 i 天结束之后处于冷冻期得到的收益(第 i 天卖出了股票)
-- <img src="https://latex.codecogs.com/gif.latex?f[i][2]&space;=&space;noStock" title="f[i][2] = noStock" /> ，第 i 天结束之后不持有任何股票，且不处于冷冻期得到的收益(卖出股票后的一天或前一天啥也没干)
+1.为什么是动态规划的题目，和 【 [122. 买卖股票的最佳时机 II](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/) 】有什么区别和联系
+
+2.这几道题的共同点，通用的模板
+
+3.启发，以后遇到动态规划的题怎么解决
+
+**给定定义**
+
+- *f [i] [0] = haveOne*，第 *i* 天结束之后持有一支股票得到的收益 (第 *i* 天买入了股票或者第 *i-1* 天持有股票第 *i* 不做任何操作)
+- *f [i] [1] = cold*，第 *i* 天结束之后处于冷冻期得到的收益(第 *i* 天卖出了股票)
+- *f [i] [2] = noStock* ，第 *i* 天结束之后不持有任何股票，且不处于冷冻期得到的收益(卖出股票后的一天或前一天啥也没干)
 
 ![image.png](https://pic.leetcode-cn.com/143bca8f4230f2ac50a47ef57bf3ce0e78fc21fc47e21b4294b87429689fcfab-image.png)
 
 **状态转移**
 
-- [x] **<img src="https://latex.codecogs.com/gif.latex?f[i][0]" title="f[i][0]" /> 从第 i-1 天转移**
-  1.第 i 天不做任何操作，则继承第 i-1 天的状态  <img src="https://latex.codecogs.com/gif.latex?f[i][0]&space;=&space;f[i-1][0]" title="f[i][0] = f[i-1][0]" />
-  2.第 i 天买入股票，那么第 i-1天就不能持有股票且不能处于冷冻期(从 $$f[i-1][2]$$ 转移状态过来) ,  
+- [x] **f [i] [0] 从第 i-1 天转移**
+  1.第 *i* 天不做任何操作，则继承第 *i-1* 天的状态  *f [i] [0] = f [i-1] [0]*
+  2.第 *i* 天买入股票，那么第 *i-1*天就不能持有股票且不能处于冷冻期(从 *f [i-1] [2]* 转移状态过来) ,  
 
-  即此时  <img src="https://latex.codecogs.com/gif.latex?f[i][0]&space;=&space;f[i-1][2]&space;-&space;prices[i]" title="f[i][0] = f[i-1][2] - prices[i]" /> 
-  取以上两种取最大值  <img src="https://latex.codecogs.com/gif.latex?f[i][0]&space;=&space;max(f[i-1][0],f[i-1][2]&space;-&space;prices[i])" title="f[i][0] = max(f[i-1][0],f[i-1][2] - prices[i])" />
+  即此时  *f [i] [0] = f [i-1] [2] - prices[i]*
+  取以上两种取最大值 `max( f [i-1] [0],f [i-1] [2] - prices[i] )`
 
-- [x] **<img src="https://latex.codecogs.com/gif.latex?f[i][1]" title="f[i][1]" /> 从第 i-1 天转移**
-  第 i-1 天必须持有股票， 第 i 天卖出股票后导致第 i 天后处于冷冻期
-  <img src="https://latex.codecogs.com/gif.latex?f[i][1]&space;=&space;f[i-1][0]&space;&plus;&space;prices[i]" title="f[i][1] = f[i-1][0] + prices[i]" />
+- [x] **f [i] [1] 从第 i-1 天转移**
+  第 *i-1*天必须持有股票， 第 *i*天卖出股票后导致第 *i* 天后处于冷冻期
+  `f [i] [1] = f [i-1] [0] + prices[i]`
 
-- [x] **<img src="https://latex.codecogs.com/gif.latex?f[i][2]" title="f[i][2]" />  从第 i-1 天转移**
-  1.第 i-1 天不持有任何股票，处于冷冻期，那么第 i 天就是不持有股票且不处于冷冻期
-  2.第 i-1 天 不持有股票且不处于冷冻期，第 i 天 继续 不持有股票且不处于冷冻期
-  以上两种取最大值   <img src="https://latex.codecogs.com/gif.latex?f[i][2]&space;=&space;max(f[i-1][1],f[i-1][2])" title="f[i][2] = max(f[i-1][1],f[i-1][2])" />
+- [x] **f [i] [2]  从第 i-1 天转移**
+  1.第 *i-1* 天不持有任何股票，处于冷冻期，那么第 *i* 天就是不持有股票且不处于冷冻期
+  2.第 *i-1* 天 不持有股票且不处于冷冻期，第 *i* 天 继续 不持有股票且不处于冷冻期
+  以上两种取最大值   `f [i] [2] = max ( f [i-1] [1],f [i-1] [2] )`
 
-最终答案 <img src="https://latex.codecogs.com/gif.latex?max(f[n-1][1],f[n-1][2])" title="max(f[n-1][1],f[n-1][2])" />  //最后一天手上即使持有股票，有没有任何意义，所以不算进来
+最终答案 `max ( f [n-1] [1],f [n-1] [2] )`  ( 最后一天手上即使持有股票，有没有任何意义，所以不算进来)
 
-初始化边界条件
+**初始化边界条件** 
 
-- f [i] [0] = -prices[0]
-- f [i] [1]  = 0;
-- f [i] [2]  = 0
-
-
+- *f [i] [0] = -prices[0]*
+- *f [i] [1]  = 0;*
+- *f [i] [2]  = 0*
 
 **代码实现**
 
