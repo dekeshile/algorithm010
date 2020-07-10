@@ -173,6 +173,12 @@ public:
 
 3.启发，以后遇到动态规划的题怎么解决
 
+**举个栗子**![](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/u=1307509515,2198846560&fm=26&gp=0.jpg)![index](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/index.jpg)![index1](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/index1.jpg) ![u=1574432094,797329227&fm=26&gp=0](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/u=1574432094,797329227&fm=26&gp=0.gif)
+
+
+
+**具体落实到解题**
+
 **给出定义**
 
 - *f [i] [0] = haveOne*，第 *i* 天结束之后持有一支股票得到的收益 ( 第 *i* 天买入了股票或者第 *i-1* 天持有股票第 *i* 不做任何操作 )
@@ -216,7 +222,7 @@ public:
 **初始化边界条件** 
 
 - *f [i] [0] = -prices[0]*
-- *f [i] [1]  = 0;*
+- *f [i] [1]  = 0*
 - *f [i] [2]  = 0*
 
 **代码实现**
