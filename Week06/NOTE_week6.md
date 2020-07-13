@@ -5,6 +5,8 @@
   - [三、课堂实战例题](#三课堂实战例题)
     - [1.斐波拉契数列](#1斐波拉契数列)
     - [2.路径计数](#2路径计数)
+      - [62. 不同路径](#62-不同路径)
+      - [63. 不同路径 II](#63-不同路径-ii)
     - [3.最长公共子序列](#3最长公共子序列)
     - [4.总结](#4总结)
   - [四、课后实战题目](#四课后实战题目)
@@ -91,11 +93,70 @@ https://en.wikipedia.org/wiki/Dynamic_programming
 
 **解题思路**
 
+这是一道动态规划的题目。大问题可以划分为小的子问题或者说规模更小的问题。我们把目光不仅仅是盯着终点，而是泛化到网格中的每一个格子。
 
+因为题目规定了机器人每次只能向下或者向右移动一步，所以对每个格子来说，都是从其正上方的格子或者正左方的格子走过来的，那么其走法就是分别走到这两个格子目前累积的走法数相加。
+
+定义 dp [i] [j] 表示终点为(i,j)时的不同路径个数
+
+因此得到动态转移方程
+
+​		dp [i] [j] = dp [i] [j-1] + dp [i-1] [j]   
 
 **代码实现**
 
+二维dp
 
+```c++
+#define N 110
+class Solution {
+public:
+    int uniquePaths(int m, int n) {
+        //dp[i][j] 表示终点为(i,j)时的不同路径个数
+        int dp[N][N];
+        //第一列初始化为 1 
+        for(int i=0;i<n;i++) dp[i][0] = 1;
+        //第一行初始化为 1
+        for(int i=0;i<m;i++) dp[0][i] = 1;
+        for(int i=1;i<n;i++) {
+            for(int j=1;j<m;j++) {
+                //每个格子等于其左和其上的格子的dp值相加
+                dp[i][j] = dp[i][j-1] + dp[i-1][j];
+            }
+        }
+        return dp[n-1][m-1];
+    }
+};
+```
+
+优化空间复杂度，使用一维dp
+
+因为其实我们在计算过程中，每一行的dp只与上一行的dp相关，所以一维数组就够用了
+
+```c++
+#define N 110
+class Solution {
+public:
+    int uniquePaths(int m, int n) {
+        //每次只用保存一行的结果
+        int dp[N];
+        //二维dp第一行初始化为1
+        for(int i=0;i<m;i++) dp[i] = 1;
+        //对二维dp来说就是从第二行开始一行一行的从左至右dp
+        for(int i=1;i<n;i++) {
+            for(int j=1;j<m;j++) {
+                /*
+                   每个格子等于其左和其上的格子的dp值相加
+                    这里的dp[j-1]就相当于当前格子的正上方的格子
+                    原dp[j]相当于当前格子的左边的格子
+                */
+                dp[j] = dp[j] + dp[j-1];
+            }
+        }
+        return dp[m-1];
+    }
+};
+```
 
 
 
@@ -132,9 +193,77 @@ https://en.wikipedia.org/wiki/Dynamic_programming
 
 **解题思路**
 
+> 参考 [简单DP，🤷‍♀️必须秒懂！](https://leetcode-cn.com/problems/unique-paths-ii/solution/jian-dan-dpbi-xu-miao-dong-by-sweetiee/)
 
+动态规划题。可以在【 [62. 不同路径](https://leetcode-cn.com/problems/unique-paths/) 】的二维dp实现方式上稍加改造。
+
+同样时在二维数组中自顶向下的递推思路，且有核心状态转移方程  `dp[i,j] = dp[i−1,j] + dp[i,j−1]`
+
+不同的是本题的网格中有障碍物，障碍是不可到达的，因此若 *(i,j)* 为障碍物，*dp[i] [j] = 0*
+
+不管是初始时或者在递归计算过程中，只要当前格子为障碍物，不可达，则 *dp[i] [j] = 0*
+
+**1、状态定义**：
+
+*dp[i] [j]* 表示走到格子 *(i,j)* 的方法数。
+**2、状态转移**：
+
+如果网格  *(i,j)* 上有障碍物，则 *dp[i] [j]* 值为 0，表示走到该格子的方法数为 0；
+否则网格  *(i,j)*  可以从网格 *(i−1,j)* 或者 网格 *(i,j−1)* 走过来，因此走到该格子的方法数为走到网格 *(i−1,j)* 和网格 *(i,j−1)* 的方法数之和，即 `dp[i,j]=dp[i−1,j]+dp[i,j−1]`
+
+状态转移方程如下：
+
+![image-20200713210912511](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/image-20200713210912511.png)
+
+
+**3、初始条件**
+
+第 1 列的格子只有从其上边格子走过去这一种走法，因此初始化 *dp [ i ] [ 0 ]* 值为 1，存在障碍物时为 0；
+
+第 1 行的格子只有从其左边格子走过去这一种走法，因此初始化 *dp [ 0 ] [ j ]* 值为 1，存在障碍物时为 0。
+
+```c++
+int dp[N][N] = {0};
+//第一列初始化为 1 ,有障碍物则为0，且当前面有障碍物，直接退出，后面都为0
+for(int i=0;i<n && obstacleGrid[i][0] == 0;i++) {
+    dp[i][0] = 1;
+}
+//第一行初始化为 1,有障碍物则为0，且当前面有障碍物，直接退出，后面都为0
+for(int i=0;i<m && obstacleGrid[0][i] == 0;i++) {
+    dp[0][i] = 1;
+}
+```
 
 **代码实现**
+
+```C++
+#define N 110
+class Solution {
+public:
+   int uniquePathsWithObstacles(vector<vector<int>>& obstacleGrid) {
+        int n = obstacleGrid.size();
+        if( n == 0 ) return 0;
+        int m = obstacleGrid[0].size();
+        //dp[i][j] 表示终点为(i,j)时的不同路径个数
+        int dp[N][N] = {0};
+        //第一列初始化为 1 ,有障碍物则为0，且当前面有障碍物，直接退出，后面都为0
+        for(int i=0;i<n && obstacleGrid[i][0] == 0;i++) {
+            dp[i][0] = 1;
+        }
+        //第一行初始化为 1,有障碍物则为0，且当前面有障碍物，直接退出，后面都为0
+        for(int i=0;i<m && obstacleGrid[0][i] == 0;i++) {
+            dp[0][i] = 1;
+        }
+        //从左至右从上至下遍历网格，填充dp
+        for(int i=1;i<n;i++) {
+          for(int j=1;j<m;j++) {
+            dp[i][j] = obstacleGrid[i][j] == 0 ? (dp[i][j-1] + dp[i-1][j]):0;
+          }
+        }
+        return dp[n-1][m-1];
+    }
+};
+```
 
 
 
@@ -144,7 +273,89 @@ https://en.wikipedia.org/wiki/Dynamic_programming
 
 ### 3.最长公共子序列
 
+![lrc1](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/lrc1.png)
 
+
+
+
+
+#### [1143. 最长公共子序列](https://leetcode-cn.com/problems/longest-common-subsequence/)
+
+> 给定两个字符串 `text1` 和 `text2`，返回这两个字符串的最长公共子序列的长度。
+>
+> 一个字符串的 *子序列* 是指这样一个新的字符串：它是由原字符串在不改变字符的相对顺序的情况下删除某些字符（也可以不删除任何字符）后组成的新字符串。
+>  例如，"ace" 是 "abcde" 的子序列，但 "aec" 不是 "abcde" 的子序列。两个字符串的「公共子序列」是这两个字符串所共同拥有的子序列。
+>
+> 若这两个字符串没有公共子序列，则返回 0。
+>
+> **示例 1:**
+>
+> ```
+> 输入：text1 = "abcde", text2 = "ace" 
+> 输出：3  
+> 解释：最长公共子序列是 "ace"，它的长度为 3。
+> ```
+>
+> **示例 2:**
+>
+> ```
+> 输入：text1 = "abc", text2 = "abc"
+> 输出：3
+> 解释：最长公共子序列是 "abc"，它的长度为 3。
+> ```
+>
+> **示例 3:**
+>
+> ```
+> 输入：text1 = "abc", text2 = "def"
+> 输出：0
+> 解释：两个字符串没有公共子序列，返回 0。
+> ```
+>
+> **提示:**
+>
+> - `1 <= text1.length <= 1000`
+> - `1 <= text2.length <= 1000`
+> - 输入的字符串只含有小写英文字符。
+
+**解题思路**
+
+动态规划。
+
+**1、状态定义**：
+
+
+**2、状态转移**：
+
+
+
+**3、初始条件**
+
+
+
+**代码实现**
+
+```C++
+#define N 1010
+class Solution {
+public:
+    int longestCommonSubsequence(string text1, string text2) {
+        int n = text1.length();//行
+        int m = text2.length();//列
+        int dp[N][N] = {0};
+        for(int i=1;i<n+1;i++) {
+            for(int j=1;j<m+1;j++) {
+                if(text1[i-1] == text2[j-1] ){
+                     dp[i][j] = dp[i-1][j-1] + 1;
+                }else{
+                     dp[i][j] = max(dp[i][j-1],dp[i-1][j]);
+                }
+            }
+        }
+        return dp[n][m];
+    }
+};
+```
 
 
 
