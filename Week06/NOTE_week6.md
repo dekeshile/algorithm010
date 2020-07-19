@@ -9,10 +9,19 @@
       - [63. 不同路径 II](#63-不同路径-ii)
     - [3.最长公共子序列](#3最长公共子序列)
       - [1143. 最长公共子序列](#1143-最长公共子序列)
-    - [4.总结](#4总结)
+    - [4.三角形最小路径和](#4三角形最小路径和)
+      - [120. 三角形最小路径和](#120-三角形最小路径和)
+    - [5.最大子序和](#5最大子序和)
+      - [53. 最大子序和](#53-最大子序和)
+    - [6.打家劫舍](#6打家劫舍)
+      - [198. 打家劫舍](#198-打家劫舍)
+    - [7.总结](#7总结)
   - [四、课后实战题目](#四课后实战题目)
     - [121. 买卖股票的最佳时机](#121-买卖股票的最佳时机)
     - [309. 最佳买卖股票时机含冷冻期](#309-最佳买卖股票时机含冷冻期)
+    - [322. 零钱兑换](#322-零钱兑换)
+    - [312. 戳气球](#312-戳气球)
+    - [64. 最小路径和](#64-最小路径和)
 
 # 第12课 | 动态规划
 
@@ -268,10 +277,6 @@ public:
 
 
 
-
-
-
-
 ### 3.最长公共子序列
 
 ![lrc1](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/lrc1.png)
@@ -325,14 +330,9 @@ public:
 
 **1、状态定义**：
 
-
 **2、状态转移**：
 
-
-
 **3、初始条件**
-
-
 
 **代码实现**
 
@@ -360,7 +360,192 @@ public:
 
 
 
-### 4.总结
+### 4.三角形最小路径和
+
+#### [120. 三角形最小路径和](https://leetcode-cn.com/problems/triangle/)
+
+> 给定一个三角形，找出自顶向下的最小路径和。每一步只能移动到下一行中相邻的结点上。
+>
+> **相邻的结点** 在这里指的是 `下标` 与 `上一层结点下标` 相同或者等于 `上一层结点下标 + 1` 的两个结点。
+>
+> 例如，给定三角形：
+>
+> ```
+> [
+>      [2],
+>     [3,4],
+>    [6,5,7],
+>   [4,1,8,3]
+> ]
+> ```
+>
+> 自顶向下的最小路径和为 `11`（即，**2** + **3** + **5** + **1** = 11）。
+>
+> **说明：**
+>
+> 如果你可以只使用 *O*(*n*) 的额外空间（*n* 为三角形的总行数）来解决这个问题，那么你的算法会很加分。
+
+**代码实现**
+
+1.自顶向下 + 递归 + 记忆化搜索
+
+```C++
+class Solution {
+public:
+    /*  dpmen记忆数组，用来存储已经计算过的值，减少重复计算
+        (i,j)->dp值 */
+    map<pair<int,int>,int> dpmen;
+    int n;
+    int minimumTotal(vector<vector<int>>& triangle) {
+        n = triangle.size();
+        return dfs(0,0,triangle);//深搜递归
+    }
+    int dfs(int i,int j,vector<vector<int>>& triangle) {
+        if(i == n) return 0;//一直递归到最后一层才返回
+        auto dot = dpmen.find({i,j});
+        if(dot != dpmen.end()) return dot->second;//已经计算过，则直接返回
+        dpmen[{i,j}] = triangle[i][j] + min(dfs(i+1,j,triangle),dfs(i+1,j+1,triangle));
+        return dpmen[{i,j}];
+    }
+};
+```
+
+2.自底向上+动态规划 + 二维数组
+
+时间复杂度O(n^2)， 空间复杂度O(n^2)
+
+```c++
+class Solution {
+public:
+    int minimumTotal(vector<vector<int>>& triangle) {
+        vector<vector<int>> dp(triangle);
+        int n= triangle.size();
+        for(int i=n-2;i>=0;i--) {
+            for(int j=0;j<dp[i].size();j++) {
+                dp[i][j] += min(dp[i+1][j],dp[i+1][j+1]);
+            }
+        }
+        return dp[0][0];
+    }
+};
+```
+
+
+
+### 5.最大子序和
+
+#### [53. 最大子序和](https://leetcode-cn.com/problems/maximum-subarray/)
+
+> 给定一个整数数组 `nums` ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。
+>
+> **示例:**
+>
+> **输入:** [-2,1,-3,4,-1,2,1,-5,4],
+>
+> **输出:** 6
+>
+> **解释:** 连续子数组 [4,-1,2,1] 的和最大，为 6。
+>
+> **进阶:**
+>
+> 如果你已经实现复杂度为 O(*n*) 的解法，尝试使用更为精妙的分治法求解。
+
+**解题思路**
+
+动态规划
+
+最大子序和 = 当前元素自身最大或者包含之前和最大
+
+状态数组：dp, dp[i] 表示[0,i]上包含nums[i]的最大和
+
+动态转移方程：
+
+![img](https://cdn.nlark.com/yuque/__latex/7dd3f9eafdd5f1da974e255ab24927c6.svg)
+
+最大和即为 max(dp)
+
+**代码实现**
+
+```c++
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int n = nums.size();
+        vector<int> dp(nums);
+        for(int i=1;i<n;i++){
+            //dp[i] =max(nums[i], nums[i] +dp[i-1])
+            dp[i] = nums[i] + max(0,dp[i-1]);
+        }
+        int maxres = INT_MIN;
+        for(int i=0;i<n;i++)
+            maxres = dp[i] > maxres ? dp[i]:maxres;
+        return maxres;
+    }
+};
+```
+
+
+
+### 6.打家劫舍
+
+#### [198. 打家劫舍](https://leetcode-cn.com/problems/house-robber/)
+
+> 你是一个专业的小偷，计划偷窃沿街的房屋。每间房内都藏有一定的现金，影响你偷窃的唯一制约因素就是相邻的房屋装有相互连通的防盗系统，**如果两间相邻的房屋在同一晚上被小偷闯入，系统会自动报警**。
+>
+> 给定一个代表每个房屋存放金额的非负整数数组，计算你 **不触动警报装置的情况下** ，一夜之内能够偷窃到的最高金额。
+>
+> **示例 1：**
+>
+> ```
+> 输入：[1,2,3,1]
+> 输出：4
+> 解释：偷窃 1 号房屋 (金额 = 1) ，然后偷窃 3 号房屋 (金额 = 3)。
+>      偷窃到的最高金额 = 1 + 3 = 4 。
+> ```
+>
+> **示例 2：**
+>
+> ```
+> 输入：[2,7,9,3,1]
+> 输出：12
+> 解释：偷窃 1 号房屋 (金额 = 2), 偷窃 3 号房屋 (金额 = 9)，接着偷窃 5 号房屋 (金额 = 1)。
+>      偷窃到的最高金额 = 2 + 9 + 1 = 12 。
+> ```
+
+**解题思路**
+
+动态规划
+
+状态数组：dp[i] [0]，dp[i] [1],， 0表示不偷，1表示偷 ，dp[i]就表示从0到 i 偷与不偷的最高金额
+
+状态转移方程：
+
+![img](https://cdn.nlark.com/yuque/__latex/4927642c25a6b028fef882c6d9c5a9b9.svg)
+
+最后的结果就是 ![img](https://cdn.nlark.com/yuque/__latex/973349d20cc7553b02a66647090d1c4b.svg)
+
+**代码实现**
+
+```c++
+#define N 110
+class Solution {
+public:
+    int rob(vector<int>& nums) {
+        int n = nums.size();
+        if(n == 0) return 0; 
+        int dp[N][N];
+        dp[0][0] = 0;
+        dp[0][1] = nums[0];
+        for(int i=1;i<n;i++) {
+            dp[i][0] = max(dp[i-1][1],dp[i-1][0]);
+            dp[i][1] = dp[i-1][0] + nums[i];
+        }
+        return max(dp[n-1][0],dp[n-1][1]);
+    }
+};
+```
+
+### 7.总结
 
 **动态规划关键点**
 
@@ -373,8 +558,6 @@ public:
   ​	*Fib: opt[i] = opt[n-1] + opt[n-2]*
 
   ​	二维路径 *opt[i,j] = opt [i+1] [j] + opt [i] [j+1]*  (且判断a[i,j]是否空地）
-
-
 
 **动态规划小结**
 
@@ -450,8 +633,6 @@ public:
     }
 };
 ```
-
-
 
 
 
@@ -559,4 +740,180 @@ public:
     }
 };
 ```
+
+### [322. 零钱兑换](https://leetcode-cn.com/problems/coin-change/)
+
+> 给定不同面额的硬币 coins 和一个总金额 amount。编写一个函数来计算可以凑成总金额所需的最少的硬币个数。如果没有任何一种硬币组合能组成总金额，返回 `-1`。
+>
+> **示例 1:**
+>
+> **输入:** coins = `[1, 2, 5]`, amount = `11`
+>
+> **输出:** `3` 
+>
+> **解释:** 11 = 5 + 5 + 1
+>
+> **示例 2:**
+>
+> **输入:** coins = `[2]`, amount = `3`
+>
+> **输出:** -1
+>
+> **说明**:
+>
+> 你可以认为每种硬币的数量是无限的。
+
+**解题思路**
+
+动态规划
+
+**状态数组**： dp数组的含义：dp[i] 表示总金额为 i 时，由 coins [x ,y ,z,...] 能凑成的最少的硬币个数
+
+每枚举到一个硬币面额coin,都和原dp[i]比较，力求dp[i]最小，即硬币个数最小
+
+总金额 i-coins[i] 再加上金额coins[i]就达到金额 i ,相应的其硬币数也就是加1
+
+**状态转移方程**：
+
+​                     ![img](https://cdn.nlark.com/yuque/__latex/23f9b410c8528b6d5ddcb6bd90639984.svg)
+
+**代码实现**
+
+```c++
+/*
+    动态规划，自底向上迭代计算
+*/
+class Solution {
+public:
+    int coinChange(vector<int>& coins, int amount) {
+        int MAX = amount +1;
+        /*
+            dp数组的含义：dp[i] 表示总金额为 i 时，由coins[x ,y ,z,...]能凑成的最少的硬币个数
+        */
+        vector<int> dp(amount+1,MAX);//数组大小amount+1，初始时数组中每个值都为MAX
+        dp[0] = 0;
+        //从总金额为1元开始计算，直到总金额为amount
+        for(int i=1;i<=amount;i++) {
+            //遍历coins数组，对每个总金额 i 来 计算 其 dp[i]
+            for(int j = 0; j < coins.size();j++ ) {
+                //当前枚举的硬币面额肯定不能大于总金额
+                if( coins[j] <= i ){
+                    dp[i] = min(dp[i],dp[ i-coins[j] ] + 1);
+                }
+            }
+        }
+        return ( dp[amount] == MAX ? -1 : dp[amount] );
+    }
+};
+```
+
+
+
+### [312. 戳气球](https://leetcode-cn.com/problems/burst-balloons/)
+
+> 有 `n` 个气球，编号为`0` 到 `n-1`，每个气球上都标有一个数字，这些数字存在数组 `nums` 中。
+>
+> 现在要求你戳破所有的气球。如果你戳破气球 `i` ，就可以获得 `nums[left] * nums[i] * nums[right]` 个硬币。 这里的 `left` 和 `right` 代表和 `i` 相邻的两个气球的序号。注意当你戳破了气球 `i` 后，气球 `left` 和气球 `right` 就变成了相邻的气球。
+>
+> 求所能获得硬币的最大数量。
+>
+> **说明:**	
+>
+> - 你可以假设 `nums[-1] = nums[n] = 1`，但注意它们不是真实存在的所以并不能被戳破。
+> - 0 ≤ `n` ≤ 500, 0 ≤ `nums[i]` ≤ 100
+>
+> **示例:**
+>
+> ```
+> 输入: [3,1,5,8]
+> 输出: 167 
+> 解释: nums = [3,1,5,8] --> [3,5,8] -->   [3,8]   -->  [8]  --> []
+>      coins =  3*1*5      +  3*5*8    +  1*3*8      + 1*8*1   = 167
+> ```
+
+**解题思路**
+
+![img](https://cdn.nlark.com/yuque/__latex/5dd94a3e5ca8a17bebd4ea1863a24cff.svg)
+
+**动态转移方程** 
+
+![img](https://cdn.nlark.com/yuque/__latex/bdcf3c5cfe2fdd65feb7989139386788.svg)
+
+**代码示例**
+
+```c++
+class Solution {
+public:
+    int maxCoins(vector<int>& nums) {
+        int n = nums.size();
+        vector<vector<int>> dp(n+2,vector<int>(n+2));
+        //为方便计算，把nums扩展为 (1,nums,1)
+        vector<int> val(n+2);
+        val[0] = val[n+1] = 1;
+        for(int i=1;i<=n;i++) val[i] = nums[i-1];
+        //开区间(i,k,j)
+        for(int i = n-1;i >= 0;i--) {
+            for(int j = i+2;j < n+2; j++) {
+                for(int k = i+1;k < j; k++) {
+                    int sum = val[i]*val[k]*val[j];
+                    sum += dp[i][k] + dp[k][j];
+                    dp[i][j] = max(dp[i][j],sum);
+                }
+            }
+        }
+        return dp[0][n+1];
+    }
+};
+```
+
+### [64. 最小路径和](https://leetcode-cn.com/problems/minimum-path-sum/)
+
+> 给定一个包含非负整数的 *m* x *n* 网格，请找出一条从左上角到右下角的路径，使得路径上的数字总和为最小。
+>
+> **说明：**每次只能向下或者向右移动一步。
+>
+> **示例:**
+
+```
+输入:
+[
+  [1,3,1],
+  [1,5,1],
+  [4,2,1]
+]
+输出: 7
+解释: 因为路径 1→3→1→1→1 的总和最小
+```
+
+**代码实现**
+
+```c++
+class Solution {
+public:
+    int minPathSum(vector<vector<int>>& grid) 
+    {
+        int m = grid.size();
+        int n = grid[0].size();
+        //dp[i][j]表示从起点到(i, j)的路径的最小和
+        vector<vector<int>> dp(m, vector<int>(n, 0));
+        //初始化边界
+        dp[0][0] = grid[0][0];
+        for(int i = 1; i < m; i++){ //第一列
+            dp[i][0] = grid[i][0] + dp[i-1][0];
+        }
+        for(int i = 1; i < n; i++){ //第一行
+            dp[0][i] = grid[0][i] + dp[0][i-1];
+        }
+        for(int i = 1; i < m; i++){
+            for(int j = 1; j < n; j++){
+                //用上方或者左边和较小的更新当前dp
+                dp[i][j] = min(dp[i-1][j], dp[i][j-1]) + grid[i][j];
+            }
+        }
+        return dp[m-1][n-1];
+    }
+};
+```
+
+
 

@@ -7,14 +7,14 @@
 ## 实战题目
 
 - ✅[爬楼梯](https://leetcode-cn.com/problems/climbing-stairs/description/)（阿里巴巴、腾讯、字节跳动在半年内面试常考）
-- 🔲[三角形最小路径和](https://leetcode-cn.com/problems/triangle/description/)（亚马逊、苹果、字节跳动在半年内面试考过）
-- 🔲[最大子序和](https://leetcode-cn.com/problems/maximum-subarray/)（亚马逊、字节跳动在半年内面试常考）
+- ✅[三角形最小路径和](https://leetcode-cn.com/problems/triangle/description/)（亚马逊、苹果、字节跳动在半年内面试考过）
+- ✅[最大子序和](https://leetcode-cn.com/problems/maximum-subarray/)（亚马逊、字节跳动在半年内面试常考）
 - 🔲[乘积最大子数组](https://leetcode-cn.com/problems/maximum-product-subarray/description/)（亚马逊、字节跳动、谷歌在半年内面试中考过）
 - ✅[零钱兑换](https://leetcode-cn.com/problems/coin-change/description/)（亚马逊在半年内面试中常考）
 
 ## 实战题目
 
-- 🔲[打家劫舍](https://leetcode-cn.com/problems/house-robber/)（字节跳动、谷歌、亚马逊在半年内面试中考过）
+- ✅[打家劫舍](https://leetcode-cn.com/problems/house-robber/)（字节跳动、谷歌、亚马逊在半年内面试中考过）
 - 🔲[打家劫舍 II ](https://leetcode-cn.com/problems/house-robber-ii/description/)（字节跳动在半年内面试中考过）
 - ✅[买卖股票的最佳时机](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/#/description)（亚马逊、字节跳动、Facebook 在半年内面试中常考）
 - ✅[买卖股票的最佳时机 II ](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/)（亚马逊、字节跳动、微软在半年内面试中考过）
@@ -46,7 +46,7 @@
 
 ### 中等
 
-- 🔲[最小路径和](https://leetcode-cn.com/problems/minimum-path-sum/)（亚马逊、高盛集团、谷歌在半年内面试中考过）
+- ✅[最小路径和](https://leetcode-cn.com/problems/minimum-path-sum/)（亚马逊、高盛集团、谷歌在半年内面试中考过）
 - 🔲[解码方法](https://leetcode-cn.com/problems/decode-ways)（亚马逊、Facebook、字节跳动在半年内面试中考过）
 - 🔲[最大正方形](https://leetcode-cn.com/problems/maximal-square/)（华为、谷歌、字节跳动在半年内面试中考过）
 - 🔲[任务调度器](https://leetcode-cn.com/problems/task-scheduler/)（Facebook 在半年内面试中常考）
@@ -61,7 +61,7 @@
 - 🔲[分割数组的最大值](https://leetcode-cn.com/problems/split-array-largest-sum)（谷歌、亚马逊、Facebook 在半年内面试中考过）
 - 🔲[学生出勤记录 II ](https://leetcode-cn.com/problems/student-attendance-record-ii/)（谷歌在半年内面试中考过）
 - 🔲[最小覆盖子串](https://leetcode-cn.com/problems/minimum-window-substring/)（Facebook 在半年内面试中常考）
-- 🔲[戳气球](https://leetcode-cn.com/problems/burst-balloons/)（亚马逊在半年内面试中考过）
+- ✅[戳气球](https://leetcode-cn.com/problems/burst-balloons/)（亚马逊在半年内面试中考过）
 
 ## 下周预习
 
@@ -71,6 +71,6 @@
 - 🔲[单词搜索 II ](https://leetcode-cn.com/problems/word-search-ii/)
 - 🔲[岛屿数量](https://leetcode-cn.com/problems/number-of-islands/)
 - 🔲[有效的数独](https://leetcode-cn.com/problems/valid-sudoku/description/)
-- 🔲[ N 皇后](https://leetcode-cn.com/problems/n-queens/)
-- 🔲[单词接龙](https://leetcode-cn.com/problems/word-ladder/)
+- ✅[ N 皇后](https://leetcode-cn.com/problems/n-queens/)
+- ✅[单词接龙](https://leetcode-cn.com/problems/word-ladder/)
 - 🔲[二进制矩阵中的最短路径](https://leetcode-cn.com/problems/shortest-path-in-binary-matrix/)
