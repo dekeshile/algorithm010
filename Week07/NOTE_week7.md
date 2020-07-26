@@ -20,7 +20,7 @@
 
 **基本结构**
 
-![img](https://cdn.nlark.com/yuque/0/2020/png/1458680/1595760083738-2b435f01-5420-47f9-885a-a113e3727ba8.png)
+![img](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/1595760083738-2b435f01-5420-47f9-885a-a113e3727ba8.png)
 
 字典树，即 Trie 树，又称单词查找树或键树，是一种树形结构。典型应用是用于统计和排序大量的字符串（但不仅限于字符串），所以经常被搜索引擎系统用于文本词频统计。 
 
@@ -38,7 +38,7 @@
 
 **结点的内部实现**
 
-**![图片.png](https://cdn.nlark.com/yuque/0/2020/png/1458680/1595760136953-23f65f1d-8b0f-4bb7-bd9d-5ee86baf0e69.png)**
+**![图片.png](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/1595760136953-23f65f1d-8b0f-4bb7-bd9d-5ee86baf0e69.png)**
 
 **核心思想**
 
@@ -58,7 +58,7 @@ Trie 树的核心思想是空间换时间。
 
 
 
-### 3.实战题目
+### 2.实战题目
 
 #### [208. 实现 Trie (前缀树)](https://leetcode-cn.com/problems/implement-trie-prefix-tree/)
 
@@ -167,11 +167,11 @@ public:
 
 **初始化**
 
-![图片.png](https://cdn.nlark.com/yuque/0/2020/png/1458680/1595762403400-c50de0d5-d76e-4747-b45a-08536957d029.png)
+![图片.png](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/1595762403400-c50de0d5-d76e-4747-b45a-08536957d029.png)
 
 **查询、合并**
 
-![图片.png](https://cdn.nlark.com/yuque/0/2020/png/1458680/1595762431954-5357d724-e85e-425b-82ba-ccf34e7bb6fa.png)
+![图片.png](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/1595762431954-5357d724-e85e-425b-82ba-ccf34e7bb6fa.png)
 
 **路径压缩**
 
@@ -255,7 +255,7 @@ class DisjSet
 
 **双向 BFS**
 
-**![1_meitu_2.jpg](https://cdn.nlark.com/yuque/0/2020/jpeg/1458680/1595763633915-37e77ca6-9982-42ef-b54a-6bb923421e93.jpeg)**
+**![1_meitu_2.jpg](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/1595763633915-37e77ca6-9982-42ef-b54a-6bb923421e93.jpeg)**
 
 
 
