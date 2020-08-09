@@ -20,17 +20,17 @@
 
 **递推公式:**
 
-![img](https://cdn.nlark.com/yuque/__latex/d3f59ab8dc65f2dae839892df87b0cd8.svg)
+![img](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/d3f59ab8dc65f2dae839892df87b0cd8.svg)
 
 **进阶过程:**
 
-从时间复杂度 ![img](https://cdn.nlark.com/yuque/__latex/c7cf1b9b9c957554447d062a3d1ab89c.svg) -> 时间复杂度 ![img](https://cdn.nlark.com/yuque/__latex/7ba55e7c64a9405a0b39a1107e90ca94.svg)
+从时间复杂度 ![img](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/c7cf1b9b9c957554447d062a3d1ab89c.svg) -> 时间复杂度 ![img](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/7ba55e7c64a9405a0b39a1107e90ca94.svg)
 
-从空间复杂度 ![img](https://cdn.nlark.com/yuque/__latex/7ba55e7c64a9405a0b39a1107e90ca94.svg) -> 时间复杂度 ![img](https://cdn.nlark.com/yuque/__latex/5e079a28737d5dd019a3b8f6133ee55e.svg)
+从空间复杂度 ![img](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/7ba55e7c64a9405a0b39a1107e90ca94.svg) -> 时间复杂度 ![img](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/5e079a28737d5dd019a3b8f6133ee55e.svg)
 
 
 
-**1.时间复杂度![img](https://cdn.nlark.com/yuque/__latex/c7cf1b9b9c957554447d062a3d1ab89c.svg) - 傻递归**
+**1.时间复杂度![img](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/c7cf1b9b9c957554447d062a3d1ab89c.svg) - 傻递归**
 
 存在大量重复计算
 
@@ -40,7 +40,7 @@ def f(n):
     return f(n - 1) + f(n - 2)
 ```
 
-**2.时间复杂度和空间复杂度都为![img](https://cdn.nlark.com/yuque/__latex/7ba55e7c64a9405a0b39a1107e90ca94.svg)   - 缓存，记忆化**
+**2.时间复杂度和空间复杂度都为![img](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/7ba55e7c64a9405a0b39a1107e90ca94.svg)   - 缓存，记忆化**
 
 存储每次的计算结果，计算时判断是否被计算过，如果已经计算过就无需再计算
 
@@ -52,7 +52,7 @@ def f(n):
     return mem[n]
 ```
 
-**3.时间复杂度和空间复杂度都为![img](https://cdn.nlark.com/yuque/__latex/7ba55e7c64a9405a0b39a1107e90ca94.svg)   - 动态规划**
+**3.时间复杂度和空间复杂度都为![img](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/7ba55e7c64a9405a0b39a1107e90ca94.svg)   - 动态规划**
 
 ```python
 def f(n):
@@ -62,7 +62,7 @@ def f(n):
     return dp[n]
 ```
 
-**4.时间复杂度为 ![img](https://cdn.nlark.com/yuque/__latex/7ba55e7c64a9405a0b39a1107e90ca94.svg)，空间复杂度为 ![img](https://cdn.nlark.com/yuque/__latex/5e079a28737d5dd019a3b8f6133ee55e.svg)   - 动态规划**
+**4.时间复杂度为 ![img](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/7ba55e7c64a9405a0b39a1107e90ca94.svg)，空间复杂度为 ![img](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/5e079a28737d5dd019a3b8f6133ee55e.svg)   - 动态规划**
 
 当前状态只与保存的上一次状态有关
 
@@ -76,13 +76,13 @@ def f(n):
 
 总结如下图：
 
-![图片.png](https://cdn.nlark.com/yuque/0/2020/png/1458680/1596957363848-6e05c4dd-69a3-46fe-81be-e99140e424c6.png)
+![图片.png](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/1596957363848-6e05c4dd-69a3-46fe-81be-e99140e424c6.png)
 
 ### 不同路径
 
 总结如下图：
 
-![image.png](https://cdn.nlark.com/yuque/0/2020/png/1458680/1596960170005-e8e369ef-799e-4c27-90f1-3f012d406eec.png)
+![image.png](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/1596960170005-e8e369ef-799e-4c27-90f1-3f012d406eec.png)
 
 ### 打家劫舍
 
@@ -104,7 +104,7 @@ dp[i][1]状态定义：![img](https://cdn.nlark.com/yuque/__latex/73a3b5884ab76c
 
 总结如下图：
 
-![image.png](https://cdn.nlark.com/yuque/0/2020/png/1458680/1596960243039-5aaef6d0-6db5-4ade-9d19-2844ca2a5b32.png)
+![image.png](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/1596960243039-5aaef6d0-6db5-4ade-9d19-2844ca2a5b32.png)
 
 
 
@@ -118,9 +118,11 @@ dp[i][j]状态的定义： ![img](https://cdn.nlark.com/yuque/__latex/eb51316ccf
 
 状态转移图：
 
-![image.png](https://cdn.nlark.com/yuque/0/2020/png/1458680/1596960556839-7e4d7f08-3d15-4b37-95c4-bfa2baf1da1f.png)
+![image.png](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/1596960556839-7e4d7f08-3d15-4b37-95c4-bfa2baf1da1f.png)
 
-![img](https://cdn.nlark.com/yuque/__latex/c95fcb047ef7a60023151a21b57ff0c4.svg)
+
+
+![img](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/c95fcb047ef7a60023151a21b57ff0c4.svg)
 
 - i 为天数
 - k 为最多交易次数
@@ -135,7 +137,7 @@ for 0 <= i < n:
         dp[i][k][s] = max(buy, sell, rest)
 ```
 
-![img](https://cdn.nlark.com/yuque/__latex/7cefda1cc04e43c64706c25848c253f9.svg)
+![img](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/7cefda1cc04e43c64706c25848c253f9.svg)
 
  max( 选择 rest , 选择 sell )
 
@@ -144,7 +146,7 @@ for 0 <= i < n:
 - \- 我昨天就没有持有，然后今天选择 rest，所以我今天还是没有持有； 
 - \- 我昨天持有股票，但是今天我 sell 了，所以我今天没有持有股票了。
 
-![img](https://cdn.nlark.com/yuque/__latex/5be38e76052220c29e89a79190d7d350.svg)
+![img](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/5be38e76052220c29e89a79190d7d350.svg)
 
  max( 选择 rest , 选择 buy )
 
@@ -157,9 +159,9 @@ for 0 <= i < n:
 
 **初始状态：**
 
-**![img](https://cdn.nlark.com/yuque/__latex/16953757f6e66c074d5f21570e4a78aa.svg)**
+**![img](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/16953757f6e66c074d5f21570e4a78aa.svg)**
 
-**![img](https://cdn.nlark.com/yuque/__latex/2973322ba13510c0c676ff0de4c211c2.svg)**
+**![img](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/2973322ba13510c0c676ff0de4c211c2.svg)**
 
 
 
@@ -412,15 +414,15 @@ public:
 
 #### 1. Longest common sequence（最长子序列） 
 
-![img](https://cdn.nlark.com/yuque/__latex/75f0810eb3711808b7a0d6bbaa19cce0.svg)
+![img](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/75f0810eb3711808b7a0d6bbaa19cce0.svg)
 
-![img](https://cdn.nlark.com/yuque/__latex/bbdfcf4fcfab5891c05c362c04b9813d.svg)
+![img](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/bbdfcf4fcfab5891c05c362c04b9813d.svg)
 
 #### 2. Longest common substring (最长子串） 
 
-![img](https://cdn.nlark.com/yuque/__latex/0e45016960b19ea7ff82d5d5d5144009.svg)
+![img](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/0e45016960b19ea7ff82d5d5d5144009.svg)
 
-![img](https://cdn.nlark.com/yuque/__latex/b3bafcef93c081422082179afba95083.svg)
+![img](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/b3bafcef93c081422082179afba95083.svg)
 
 #### 3. Edit distance（编辑距离） 
 
@@ -449,9 +451,9 @@ dp [i] [j] 代表 T 前 i 字符串可以由 s 前 j 字符串组成最多个数
 
 所以动态方程： 
 
-当 ![img](https://cdn.nlark.com/yuque/__latex/0f534adef0e6f0b3d40ecebc41d71eb6.svg)
+当 ![img](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/0f534adef0e6f0b3d40ecebc41d71eb6.svg)
 
-当 ![img](https://cdn.nlark.com/yuque/__latex/a6842d17bf142286e9c1cbe4937542d5.svg)
+当 ![img](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/a6842d17bf142286e9c1cbe4937542d5.svg)
 
 ### 字符串匹配算法
 
@@ -518,4 +520,4 @@ KMP算法（Knuth-Morris-Pratt）的思想就是，当子串与目标字符串�
 
 KMP 算法的想法是，设法利用这个已知信息，不要把“搜索位置” 移回已经比较过的位置，继续把它向后移，这样就提高了效率。 
 
-![image.png](https://cdn.nlark.com/yuque/0/2020/png/1458680/1596962397952-6fc1f2fa-2afa-4dbe-ba35-d9a909ff6aea.png)
+![image.png](https://cdn.jsdelivr.net/gh/dekeshile/mycloudimg@master/1596962397952-6fc1f2fa-2afa-4dbe-ba35-d9a909ff6aea.png)
